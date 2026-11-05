@@ -1,0 +1,1950 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+
+<meta charset="utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+<meta name="author" content="Chengshun Zhao" />
+
+
+
+<title>NY NOAA Interactive Dashboard</title>
+
+<meta property="og:title" content="NY NOAA Interactive Dashboard" />
+
+<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no' />
+
+<link rel="icon" href="data:image/x-icon;" type="image/x-icon">
+
+
+<script type="text/javascript">
+window.FlexDashboardComponents = [];
+</script>
+
+<script src="site_libs/header-attrs-2.32/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/cosmo.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="site_libs/stickytableheaders-0.1.19/jquery.stickytableheaders.min.js"></script>
+<link href="site_libs/value-box-accent-static-0.6.3/theme-cosmo-value-box.css" rel="stylesheet" />
+<link href="site_libs/flexdashboard-css-0.6.3/flexdashboard.min.css" rel="stylesheet" />
+<link href="site_libs/flexdashboard-css-0.6.3/theme-cosmo.css" rel="stylesheet" />
+<link href="site_libs/htmltools-fill-0.5.9/fill.css" rel="stylesheet" />
+<script src="site_libs/htmlwidgets-1.6.4/htmlwidgets.js"></script>
+<script src="site_libs/plotly-binding-4.12.1/plotly.js"></script>
+<script src="site_libs/typedarray-0.1/typedarray.min.js"></script>
+<link href="site_libs/crosstalk-1.2.2/css/crosstalk.min.css" rel="stylesheet" />
+<script src="site_libs/crosstalk-1.2.2/js/crosstalk.min.js"></script>
+<link href="site_libs/plotly-htmlwidgets-css-2.25.2/plotly-htmlwidgets.css" rel="stylesheet" />
+<script src="site_libs/plotly-main-2.25.2/plotly-latest.min.js"></script>
+<style type="text/css">
+/*
+  CSS for flexdashboard.js' use of Sly(). The sizing/position of this CSS needs to be
+  applied _before_ flexdashboard.js initializes, which is why this CSS has been pulled
+  out from flexdashboard.scss and inlined in the document's head.
+*/
+
+.storyboard-nav button {
+  background: transparent;
+  border: 0;
+  opacity: .3;
+  outline: none;
+  padding: 0;
+}
+
+.storyboard-nav button:hover,
+.storyboard-nav button:hover {
+  opacity: .5;
+}
+
+.storyboard-nav button:disabled,
+.storyboard-nav button:disabled {
+  opacity: .1;
+}
+
+.storyboard-nav .sbnext,
+.storyboard-nav .sbprev {
+  float: left;
+  width: 2%;
+  height: 120px;
+}
+
+.storyboard-nav .sbprev {
+  text-align: left;
+  width: 2%;
+}
+
+.storyboard-nav .sbnext {
+  float: right;
+  text-align: right;
+  margin-right: 8px;
+}
+
+.storyboard-nav .sbframelist {
+  margin: 0 auto;
+  width: 94%;
+  height: 120px;
+  overflow: hidden;
+  text-shadow: none;
+  margin-bottom: 8px;
+}
+
+.storyboard-nav .sbframelist ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+
+.storyboard-nav .sbframelist ul li {
+  float: left;
+  width: 270px;
+  height: 100%;
+  padding: 10px 10px 10px 10px;
+  margin-right: 8px;
+  text-align: left;
+  cursor: pointer;
+}
+
+.storyboard-nav .sbframelist ul li:last-child {
+  margin-right: 0px;
+}
+
+.sbframe-commentary {
+  width: 300px;
+}
+
+.sbframe-commentary ul {
+  padding-left: 22px;
+}
+
+.sbframe.active {
+  display: flex;
+}
+
+.sbframe:not(.active) {
+  display: none;
+}
+</style>
+
+
+
+</head>
+
+<body>
+
+<div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+<div class="container-fluid">
+<div class="navbar-header">
+
+<span class="navbar-logo pull-left">
+  
+</span>
+<span class="navbar-brand">
+  NY NOAA Interactive Dashboard
+  <span class="navbar-author">
+    Chengshun Zhao
+    </span>
+</span>
+
+<button id="navbar-button" type="button" class="navbar-toggle collapsed pull-right" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbar" data-bs-target="#navbar">
+<span class="icon-bar"></span>
+<span class="icon-bar"></span>
+<span class="icon-bar"></span>
+</button>
+
+</div>
+<div id="navbar" class="navbar-collapse collapse">
+<ul class="nav navbar-nav navbar-left">
+</ul>
+<ul class="nav navbar-nav navbar-right">
+</ul>
+</div><!--/.nav-collapse-->
+</div><!--/.container-->
+</div><!--/.navbar-->
+
+<script type="text/javascript">
+
+
+var FlexDashboard = (function () {
+
+  // initialize options
+  var _options = {};
+
+  var FlexDashboard = function() {
+
+    // default options
+    _options = $.extend(_options, {
+      theme: "cosmo",
+      fillPage: false,
+      orientation: 'columns',
+      storyboard: false,
+      defaultFigWidth: 576,
+      defaultFigHeight: 461,
+      defaultFigWidthMobile: 360,
+      defaultFigHeightMobile: 461,
+      isMobile: false,
+      isPortrait: false,
+      resize_reload: true
+    });
+  };
+
+  function init(options) {
+
+    // extend default options
+    $.extend(true, _options, options);
+
+    // add ids to sections that don't have them (pandoc won't assign ids
+    // to e.g. sections with titles consisting of only chinese characters)
+    var nextId = 1;
+    $('.level1:not([id]),.level2:not([id]),.level3:not([id])').each(function() {
+      $(this).attr('id', 'dashboard-' + nextId++);
+    });
+
+    // find navbar items
+    var navbarItems = $('#flexdashboard-navbar');
+    if (navbarItems.length)
+      navbarItems = JSON.parse(navbarItems.html());
+    addNavbarItems(navbarItems);
+
+    // find the main dashboard container
+    var dashboardContainer = $('#dashboard-container');
+
+    // resolve mobile classes
+    resolveMobileClasses(dashboardContainer);
+
+    // one time global initialization for components
+    componentsInit(dashboardContainer);
+
+    // look for a global sidebar
+    var globalSidebar = dashboardContainer.find(".section.level1.sidebar");
+    if (globalSidebar.length > 0) {
+
+      // global layout for fullscreen displays
+      if (!isMobilePhone()) {
+
+         // hoist it up to the top level
+         globalSidebar.insertBefore(dashboardContainer);
+
+         // lay it out (set width/positions)
+         layoutSidebar(globalSidebar, dashboardContainer);
+
+      // tuck sidebar into first page for mobile phones
+      } else {
+
+        // convert it into a level3 section
+        globalSidebar.removeClass('sidebar');
+        globalSidebar.removeClass('level1');
+        globalSidebar.addClass('level3');
+        var h1 = globalSidebar.children('h1');
+        var h3 = $('<h3></h3>');
+        h3.append(h1.contents());
+        h3.insertBefore(h1);
+        h1.detach();
+
+        // move it into the first page
+        var page = dashboardContainer.find('.section.level1').first();
+        if (page.length > 0)
+          page.prepend(globalSidebar);
+      }
+    }
+
+    // look for pages to layout
+    var pages = $('div.section.level1');
+    if (pages.length > 0) {
+
+        // find the navbar and collapse on clicked
+        var navbar = $('#navbar');
+        navbar.on("click", "a[data-toggle!=dropdown]", null, function () {
+           navbar.collapse('hide');
+        });
+
+        // envelop the dashboard container in a tab content div
+        dashboardContainer.wrapInner('<div class="tab-content"></div>');
+
+        pages.each(function(index) {
+
+          // lay it out
+          layoutDashboardPage($(this));
+
+          // add it to the navbar
+          addToNavbar($(this), index === 0);
+
+        });
+
+    } else {
+
+      // remove the navbar and navbar button if we don't
+      // have any navbuttons
+      if (navbarItems.length === 0) {
+        $('#navbar').remove();
+        $('#navbar-button').remove();
+      }
+
+      // add the storyboard class if requested
+      if (_options.storyboard)
+        dashboardContainer.addClass('storyboard');
+
+      // layout the entire page
+      layoutDashboardPage(dashboardContainer);
+    }
+
+    // if we are in shiny we need to trigger a window resize event to
+    // force correct layout of shiny-bound-output elements
+    if (isShinyDoc())
+      $(window).trigger('resize');
+
+    // make main components visible
+    $('.section.sidebar').css('visibility', 'visible');
+    dashboardContainer.css('visibility', 'visible');
+
+    // handle location hash
+    handleLocationHash();
+
+    // intialize prism highlighting
+    initPrismHighlighting();
+
+    // record mobile and orientation state then register a handler
+    // to refresh if resize_reload is set to true and it changes
+    _options.isMobile = isMobilePhone();
+    _options.isPortrait = isPortrait();
+    if (_options.resize_reload) {
+      $(window).on('resize', function() {
+        if (_options.isMobile !== isMobilePhone() ||
+            _options.isPortrait !== isPortrait()) {
+          window.location.reload();
+        }
+      });
+    } else {
+      // if in desktop mode and resizing to mobile, make sure the heights are 100%
+      // This enforces what `fillpage.css` does for "wider" pages.
+      // Since we are not reloading once the page becomes small, we need to force the height to 100%
+      // This is a new situation introduced when `_options.resize_reload` is `false`
+      if (! _options.isMobile) {
+        // only add if `fillpage.css` was added in the first place
+        if (_options.fillPage) {
+          // fillpage.css
+          $("html,body,#dashboard").css("height", "100%");
+        }
+      }
+    }
+    // trigger layoutcomplete event
+    dashboardContainer.trigger('flexdashboard:layoutcomplete');
+  }
+
+  function resolveMobileClasses(dashboardContainer) {
+     // add top level layout class
+    dashboardContainer.addClass(isMobilePhone() ? 'mobile-layout' :
+                                                  'desktop-layout');
+
+    // look for .mobile sections and add .no-mobile to their peers
+    var mobileSections = $('.section.mobile');
+    mobileSections.each(function() {
+       var id = $(this).attr('id');
+       var nomobileId = id.replace(/-\d+$/, '');
+       $('#' + nomobileId).addClass('no-mobile');
+    });
+  }
+
+  function addNavbarItems(navbarItems) {
+
+    var navbarLeft = $('ul.navbar-left');
+    var navbarRight = $('ul.navbar-right');
+
+    for (var i = 0; i<navbarItems.length; i++) {
+
+      // get the item
+      var item = navbarItems[i];
+
+      // determine the container
+      var container = null;
+      if (item.align === "left")
+        container = navbarLeft;
+      else
+        container = navbarRight;
+
+      // navbar menu if we have multiple items
+      if (item.items) {
+        var menu = navbarMenu(null, item.icon, item.title, container);
+        for (var j = 0; j<item.items.length; j++) {
+          var subItem = item.items[j];
+          var li = $('<li></li>');
+          var a = navbarLink(subItem.icon, subItem.title, subItem.href, subItem.target);
+          a.removeClass("nav-link").addClass("dropdown-item");
+          li.append(a);
+          menu.append(li);
+        }
+      } else {
+        var li = $('<li class="nav-item"></li>');
+        li.append(navbarLink(item.icon, item.title, item.href, item.target));
+        container.append(li);
+      }
+    }
+  }
+
+  // create or get a reference to an existing dropdown menu
+  function navbarMenu(id, icon, title, container) {
+    var existingMenu = [];
+    if (id)
+      existingMenu = container.children('#' + id);
+    if (existingMenu.length > 0) {
+      return existingMenu.children('ul');
+    } else {
+      var li = $('<li class="nav-item"></li>');
+      if (id)
+        li.attr('id', id);
+      li.addClass('dropdown');
+      // auto add "Share" title on mobile if necessary
+      if (!title && icon && (icon === "fa-share-alt") && isMobilePhone())
+        title = "Share";
+      if (title) {
+        title = title + ' <span class="caret"></span>';
+      }
+      var a = navbarLink(icon, title, "#");
+      a.addClass('dropdown-toggle');
+      a.attr('data-toggle', 'dropdown');
+      a.attr('data-bs-toggle', 'dropdown');
+      a.attr('role', 'button');
+      a.attr('aria-expanded', 'false');
+      li.append(a);
+      var ul = $('<ul class="dropdown-menu"></ul>');
+      ul.attr('role', 'menu');
+      li.append(ul);
+      container.append(li);
+      return ul;
+    }
+  }
+
+  function addToNavbar(page, active) {
+
+    // capture the id and data-icon attribute (if any)
+    var id = page.attr('id');
+    var icon = page.attr('data-icon');
+    var navmenu = page.attr('data-navmenu');
+    var navmenuIcon = page.attr('data-navmenu-icon');
+
+    // get hidden state (transfer this to navbar)
+    var hidden = page.hasClass('hidden');
+    page.removeClass('hidden');
+
+    // sanitize the id for use with bootstrap tabs
+    id = id.replace(/[.\/?&!#<>]/g, '').replace(/\s/g, '_');
+    page.attr('id', id);
+
+    // get the wrapper
+    var wrapper = page.closest('.dashboard-page-wrapper');
+
+    // move the id to the wrapper
+    page.removeAttr('id');
+    wrapper.attr('id', id);
+
+    // add the tab-pane class to the wrapper
+    wrapper.addClass('tab-pane');
+
+    // get a reference to the h1, discover its inner contens, then detach it
+    var h1 = wrapper.find('h1').first();
+    var title = h1.contents();
+    h1.detach();
+
+    // create a navbar item
+    var li = $('<li></li>');
+    var a = navbarLink(icon, title, '#' + id);
+    a.attr('data-toggle', 'tab');
+    a.attr('data-bs-toggle', 'tab');
+    li.append(a);
+
+    // add it to the navbar (or navbar menu if specified)
+    var container = $('ul.navbar-left');
+    if (navmenu) {
+      var menuId = navmenu.replace(/\s+/g, '');
+      var menu = navbarMenu(menuId, navmenuIcon, navmenu, container);
+      li.find("> a").removeClass("nav-link").addClass("dropdown-item");
+      menu.append(li);
+    } else {
+      li.addClass("nav-item")
+      container.append(li);
+    }
+
+    // mark active tab and corresponding nav menu item
+    if (active)
+      $(a).tab("show");
+
+    // hide it if requested
+    if (hidden)
+      li.addClass('hidden');
+  }
+
+  function navbarLink(icon, title, href, target) {
+
+    var a = $('<a class="nav-link"></a>');
+    if (icon) {
+
+      // get the name of the icon set and icon
+      var dashPos = icon.indexOf("-");
+      var iconSet = null;
+      var iconSplit = icon.split(" ");
+      if (iconSplit.length > 1) {
+        iconSet = iconSplit[0];
+        icon = iconSplit.slice(1).join(" ");
+      } else {
+        iconSet = icon.substring(0, dashPos);
+      }
+      var iconName = icon.substring(dashPos + 1);
+
+      // create the icon
+      var iconElement = $('<span class="' + iconSet + ' ' + icon + '"></span>');
+      if (title)
+        iconElement.css('margin-right', '7px');
+      a.append(iconElement);
+      // if href is null see if we can auto-generate based on icon (e.g. social)
+      if (!href)
+        maybeGenerateLinkFromIcon(iconName, a);
+    }
+    if (title)
+      a.append(title);
+
+    // add the href.
+    if (href) {
+      if (href === "source_embed") {
+        a.attr('href', '#');
+        a.attr('data-featherlight', "#flexdashboard-source-code");
+        a.featherlight({
+            beforeOpen: function(event){
+              $('body').addClass('unselectable');
+            },
+            afterClose: function(event){
+              $('body').removeClass('unselectable');
+            }
+        });
+      } else {
+        a.attr('href', href);
+      }
+    }
+
+    // add the arget
+    if (target)
+      a.attr('target', target);
+
+    return a;
+  }
+
+  // auto generate a link from an icon name (e.g. twitter) when possible
+  function maybeGenerateLinkFromIcon(iconName, a) {
+
+     var serviceLinks = {
+      "twitter": "https://twitter.com/share?text=" + encodeURIComponent(document.title) + "&url="+encodeURIComponent(location.href),
+      "facebook": "https://www.facebook.com/sharer/sharer.php?u="+encodeURIComponent(location.href),
+      "linkedin": "https://www.linkedin.com/shareArticle?mini=true&url="+encodeURIComponent(location.href) + "&title=" + encodeURIComponent(document.title),
+      "pinterest": "https://pinterest.com/pin/create/link/?url="+encodeURIComponent(location.href) + "&description=" + encodeURIComponent(document.title)
+    };
+
+    var makeSocialLink = function(a, href) {
+      a.attr('href', '#');
+      a.on('click', function(e) {
+        e.preventDefault();
+        window.open(href);
+      });
+    };
+
+    $.each(serviceLinks, function(key, value) {
+      if (iconName.indexOf(key) !== -1)
+        makeSocialLink(a, value);
+    });
+  }
+
+  // layout a dashboard page
+  function layoutDashboardPage(page) {
+
+    // use a page wrapper so that free form content above the
+    // dashboard appears at the top rather than the side (as it
+    // would without the wrapper in a column orientation)
+    var wrapper = $('<div class="dashboard-page-wrapper"></div>');
+    page.wrap(wrapper);
+
+    // if there are no level2 or level3 headers synthesize a level3
+    // header to contain the (e.g. frame it, scroll container, etc.)
+    var headers = page.find('h2,h3');
+    if (headers.length === 0)
+      page.wrapInner('<div class="section level3"></div>');
+
+    // hoist up any content before level 2 or level 3 headers
+    var children = page.children();
+    children.each(function(index) {
+      if ($(this).hasClass('level2') || $(this).hasClass('level3'))
+        return false;
+      $(this).insertBefore(page);
+    });
+
+    // determine orientation and fillPage behavior for distinct media
+    var orientation, fillPage, storyboard;
+
+    // media: mobile phone
+    if (isMobilePhone()) {
+
+      // if there is a sidebar we need to ensure it's content
+      // is properly framed as an h3
+      var sidebar = page.find('.section.sidebar');
+      sidebar.removeClass('sidebar');
+      sidebar.wrapInner('<div class="section level3"></div>');
+      var h2 = sidebar.find('h2');
+      var h3 = $('<h3></h3>');
+      h3.append(h2.contents());
+      h3.insertBefore(h2);
+      h2.detach();
+
+      // wipeout h2 elements then enclose them in a single h2
+      var level2 = page.find('div.section.level2');
+      level2.each(function() {
+        level2.children('h2').remove();
+        level2.children().unwrap();
+      });
+      page.wrapInner('<div class="section level2"></div>');
+
+      // substitute mobile images
+      if (isPortrait()) {
+        var mobileFigures = $('img.mobile-figure');
+        mobileFigures.each(function() {
+          // get the src (might be base64 encoded)
+          var src = $(this).attr('src');
+
+          // find it's peer
+          var id = $(this).attr('data-mobile-figure-id');
+          var img = $('img[data-figure-id=' + id + "]");
+          img.attr('src', src)
+             .attr('width', _options.defaultFigWidthMobile)
+             .attr('height', _options.defaultFigHeightMobile);
+        });
+      }
+
+      // hoist storyboard commentary into it's own section
+      if (page.hasClass('storyboard')) {
+        var commentaryHR = page.find('div.section.level3 hr');
+        commentaryHR.each(function() {
+          var commentary = $(this).nextAll().detach();
+          var commentarySection = $('<div class="section level3"></div>');
+          commentarySection.append(commentary);
+          commentarySection.insertAfter($(this).closest('div.section.level3'));
+          $(this).remove();
+        });
+      }
+
+      // force a non full screen layout by columns
+      orientation = _options.orientation = 'columns';
+      fillPage = _options.fillPage = false;
+      storyboard = _options.storyboard = false;
+
+    // media: desktop
+    } else {
+
+      // determine orientation
+      orientation = page.attr('data-orientation');
+      if (orientation !== 'rows' && orientation != 'columns')
+        orientation = _options.orientation;
+
+      // determine storyboard mode
+      storyboard = page.hasClass('storyboard');
+
+      // fillPage based on options (force for storyboard)
+      fillPage = _options.fillPage || storyboard;
+
+      // handle sidebar
+      var sidebar = page.find('.section.level2.sidebar');
+      if (sidebar.length > 0)
+        layoutSidebar(sidebar, page);
+    }
+
+    // give it and it's parent divs height: 100% if we are in fillPage mode
+    if (fillPage) {
+      page.addClass('vertical-layout-fill');
+      page.css('height', '100%');
+      page.parents('div').css('height', '100%');
+    } else {
+      page.addClass('vertical-layout-scroll');
+    }
+
+    // perform the layout
+    if (storyboard)
+      layoutPageAsStoryboard(page);
+    else if (orientation === 'rows')
+      layoutPageByRows(page, fillPage);
+    else if (orientation === 'columns')
+      layoutPageByColumns(page, fillPage);
+  }
+
+  function layoutSidebar(sidebar, content) {
+
+    // get it out of the header hierarchy
+    sidebar = sidebar.first();
+    if (sidebar.hasClass('level1')) {
+      sidebar.removeClass('level1');
+      sidebar.children('h1').remove();
+    } else if (sidebar.hasClass('level2')) {
+      sidebar.removeClass('level2');
+      sidebar.children('h2').remove();
+    }
+
+    // determine width
+    var sidebarWidth = isTablet() ? 220 : 250;
+    var dataWidth = parseInt(sidebar.attr('data-width'));
+    if (dataWidth)
+      sidebarWidth = dataWidth;
+
+    // set the width and shift the page right to accomodate the sidebar
+    sidebar.css('width', sidebarWidth + 'px');
+    content.css('padding-left', sidebarWidth + 'px');
+
+    // wrap it's contents in a form
+    sidebar.wrapInner($('<form></form>'));
+  }
+
+  function layoutPageAsStoryboard(page) {
+
+    // create storyboard navigation
+    var nav = $('<div class="storyboard-nav"></div>');
+
+    // add navigation buttons
+    var prev = $('<button class="sbprev"><i class="fa fa-angle-left"></i></button>');
+    nav.append(prev);
+    var next= $('<button class="sbnext"><i class="fa fa-angle-right"></i></button>');
+    nav.append(next);
+
+    // add navigation frame
+    var frameList = $('<div class="sbframelist"></div>');
+    nav.append(frameList);
+    var ul = $('<ul></ul>');
+    frameList.append(ul);
+
+     // find all the level3 sections (those are the storyboard frames)
+    var frames = page.find('div.section.level3');
+    frames.each(function() {
+
+      // mark it
+      $(this).addClass('sbframe');
+
+      // divide it into chart content and (optional) commentary
+      $(this).addClass('dashboard-column-orientation');
+
+      // stuff the chart into it's own div w/ flex
+      $(this).wrapInner('<div class="sbframe-component"></div>');
+      setFlex($(this), 1);
+      var frame = $(this).children('.sbframe-component');
+
+      // extract the title from the h3
+      var li = $('<li></li>');
+      var h3 = frame.children('h3');
+      li.append(h3.contents());
+      h3.detach();
+      ul.append(li);
+
+      // extract commentary
+      var hr = frame.children('hr');
+      if (hr.length) {
+        var commentary = hr.nextAll().detach();
+        hr.remove();
+        var commentaryFrame = $('<div class="sbframe-commentary"></div>');
+        commentaryFrame.addClass('flowing-content-shim');
+        commentaryFrame.addClass('flowing-content-container');
+        commentaryFrame.append(commentary);
+        $(this).append(commentaryFrame);
+
+        // look for a data-commentary-width attribute
+        var commentaryWidth = $(this).attr('data-commentary-width');
+        if (commentaryWidth)
+          commentaryFrame.css('width', commentaryWidth + 'px');
+      }
+
+      // layout the chart (force flex)
+      var result = layoutChart(frame, true);
+
+      // ice the notes if there are none
+      if (!result.notes)
+        frame.find('.chart-notes').remove();
+
+      // set flex on chart
+      setFlex(frame, 1);
+    });
+
+    // create a div to hold all the frames
+    var frameContent = $('<div class="sbframe-content"></div>');
+    frameContent.addClass('dashboard-row-orientation');
+    frameContent.append(frames.detach());
+
+    // row orientation to stack nav and frame content
+    page.addClass('dashboard-row-orientation');
+    page.append(nav);
+    page.append(frameContent);
+    setFlex(frameContent, 1);
+
+    // initialize sly
+    var sly = new Sly(frameList, {
+    		horizontal: true,
+    		itemNav: 'basic',
+    		smart: true,
+    		activateOn: 'click',
+    		startAt: 0,
+    		scrollBy: 1,
+    		activatePageOn: 'click',
+    		speed: 200,
+    		moveBy: 600,
+    		dragHandle: true,
+    		dynamicHandle: true,
+    		clickBar: true,
+    		keyboardNavBy: 'items',
+    		next: next,
+    		prev: prev
+    	}).init();
+
+    // make first frame active
+    frames.removeClass('active');
+    frames.first().addClass('active');
+
+    // subscribe to frame changed events
+    sly.on('active', function (eventName, itemIndex) {
+      frames.removeClass('active');
+      frames.eq(itemIndex).addClass('active')
+                          .trigger('shown');
+    });
+  }
+
+  function layoutPageByRows(page, fillPage) {
+
+    // row orientation
+    page.addClass('dashboard-row-orientation');
+
+    // find all the level2 sections (those are the rows)
+    var rows = page.find('div.section.level2');
+
+    // if there are no level2 sections then treat the
+    // entire page as if it's a level 2 section
+    if (rows.length === 0) {
+      page.wrapInner('<div class="section level2"></div>');
+      rows = page.find('div.section.level2');
+    }
+
+    rows.each(function () {
+
+      // flags
+      var haveNotes = false;
+      var haveFlexHeight = true;
+
+      // remove the h2
+      $(this).children('h2').remove();
+
+      // check for a tabset
+      var isTabset = $(this).hasClass('tabset');
+      if (isTabset)
+        layoutTabset($(this));
+
+      // give it row layout semantics if it's not a tabset
+      if (!isTabset)
+        $(this).addClass('dashboard-row');
+
+      // find all of the level 3 subheads
+      var columns = $(this).find('div.section.level3');
+
+      // determine figureSizes sizes
+      var figureSizes = chartFigureSizes(columns);
+
+      // fixup the columns
+      columns.each(function(index) {
+
+        // layout the chart (force flex if we are in a tabset)
+        var result = layoutChart($(this), isTabset);
+
+        // update flexHeight state
+        if (!result.flex)
+          haveFlexHeight = false;
+
+        // update state
+        if (result.notes)
+          haveNotes = true;
+
+        // set the column flex based on the figure width
+        // (value boxes will just get the default figure width)
+        var chartWidth = figureSizes[index].width;
+        setFlex($(this), chartWidth + ' ' + chartWidth + ' 0px');
+
+      });
+
+      // remove empty chart note divs
+      if (isTabset)
+        $(this).find('.chart-notes').filter(function() {
+            return $(this).html() === "&nbsp;";
+        }).remove();
+      if (!haveNotes)
+        $(this).find('.chart-notes').remove();
+
+       // make it a flexbox row
+      if (haveFlexHeight)
+        $(this).addClass('dashboard-row-flex');
+
+      // now we can set the height on all the wrappers (based on maximum
+      // figure height + room for title and notes, or data-height on the
+      // container if specified). However, don't do this if there is
+      // no flex on any of the constituent columns
+      var flexHeight = null;
+      var dataHeight = parseInt($(this).attr('data-height'));
+      if (dataHeight)
+        flexHeight = adjustedHeight(dataHeight, columns.first());
+      else if (haveFlexHeight)
+        flexHeight = maxChartHeight(figureSizes, columns);
+      if (flexHeight) {
+        if (fillPage)
+          setFlex($(this), flexHeight + ' ' + flexHeight + ' 0px');
+        else {
+          $(this).css('height', flexHeight + 'px');
+          setFlex($(this), '0 0 ' + flexHeight + 'px');
+        }
+      }
+
+    });
+  }
+
+  function layoutPageByColumns(page, fillPage) {
+
+    // column orientation
+    page.addClass('dashboard-column-orientation');
+
+    // find all the level2 sections (those are the columns)
+    var columns = page.find('div.section.level2');
+
+    // if there are no level2 sections then treat the
+    // entire page as if it's a level 2 section
+    if (columns.length === 0) {
+      page.wrapInner('<div class="section level2"></div>');
+      columns = page.find('div.section.level2');
+    }
+
+    // layout each column
+    columns.each(function (index) {
+
+      // remove the h2
+      $(this).children('h2').remove();
+
+      // make it a flexbox column
+      $(this).addClass('dashboard-column');
+
+      // check for a tabset
+      var isTabset = $(this).hasClass('tabset');
+      if (isTabset)
+        layoutTabset($(this));
+
+      // find all the h3 elements
+      var rows = $(this).find('div.section.level3');
+
+      // get the figure sizes for the rows
+      var figureSizes = chartFigureSizes(rows);
+
+      // column flex is the max row width (or data-width if specified)
+      var flexWidth;
+      var dataWidth = parseInt($(this).attr('data-width'));
+      if (dataWidth)
+        flexWidth = dataWidth;
+      else
+        flexWidth = maxChartWidth(figureSizes);
+      setFlex($(this), flexWidth + ' ' + flexWidth + ' 0px');
+
+      // layout each chart
+      rows.each(function(index) {
+
+        // perform the layout
+        var result = layoutChart($(this), false);
+
+        // ice the notes if there are none
+        if (!result.notes)
+          $(this).find('.chart-notes').remove();
+
+        // set flex height based on figHeight, then adjust
+        if (result.flex) {
+          var chartHeight = figureSizes[index].height;
+          chartHeight = adjustedHeight(chartHeight, $(this));
+          if (fillPage)
+            setFlex($(this), chartHeight + ' ' + chartHeight + ' 0px');
+          else {
+            $(this).css('height', chartHeight + 'px');
+            setFlex($(this), chartHeight + ' ' + chartHeight + ' ' + chartHeight + 'px');
+          }
+        }
+      });
+    });
+  }
+
+  function chartFigureSizes(charts) {
+
+    // sizes
+    var figureSizes = new Array(charts.length);
+
+    // check each chart
+    charts.each(function(index) {
+
+      // start with default
+      figureSizes[index] = {
+        width: _options.defaultFigWidth,
+        height: _options.defaultFigHeight
+      };
+
+      // look for data-height or data-width then knit options
+      var dataWidth = parseInt($(this).attr('data-width'));
+      var dataHeight = parseInt($(this).attr('data-height'));
+      var knitrOptions = $(this).find('.knitr-options:first');
+      var knitrWidth, knitrHeight;
+      if (knitrOptions) {
+        knitrWidth = parseInt(knitrOptions.attr('data-fig-width'));
+        knitrHeight =  parseInt(knitrOptions.attr('data-fig-height'));
+      }
+
+      // width
+      if (dataWidth)
+        figureSizes[index].width = dataWidth;
+      else if (knitrWidth)
+        figureSizes[index].width = knitrWidth;
+
+      // height
+      if (dataHeight)
+        figureSizes[index].height = dataHeight;
+      else if (knitrHeight)
+        figureSizes[index].height = knitrHeight;
+    });
+
+    // return sizes
+    return figureSizes;
+  }
+
+  function maxChartHeight(figureSizes, charts) {
+
+    // first compute the maximum height
+    var maxHeight = _options.defaultFigHeight;
+    for (var i = 0; i<figureSizes.length; i++)
+      if (figureSizes[i].height > maxHeight)
+        maxHeight = figureSizes[i].height;
+
+    // now add offests for chart title and chart notes
+    if (charts.length)
+      maxHeight = adjustedHeight(maxHeight, charts.first());
+
+    return maxHeight;
+  }
+
+  function adjustedHeight(height, chart) {
+    if (chart.length > 0) {
+      var chartTitle = chart.find('.chart-title');
+      if (chartTitle.length)
+        height += chartTitle.first().outerHeight();
+      var chartNotes = chart.find('.chart-notes');
+      if (chartNotes.length)
+        height += chartNotes.first().outerHeight();
+    }
+    return height;
+  }
+
+  function maxChartWidth(figureSizes) {
+    var maxWidth = _options.defaultFigWidth;
+    for (var i = 0; i<figureSizes.length; i++)
+      if (figureSizes[i].width > maxWidth)
+        maxWidth = figureSizes[i].width;
+    return maxWidth;
+  }
+
+  // layout a chart
+  function layoutChart(chart, forceFlex) {
+
+    // state to return
+    var result = {
+      notes: false,
+      flex: false
+    };
+
+    // extract the title
+    var title = extractTitle(chart);
+
+    // find components that apply to this container
+    var components = componentsFind(chart);
+
+    // if it's a custom component then call it and return
+    var customComponents = componentsCustom(components);
+    if (customComponents.length) {
+      componentsLayout(customComponents, title, chart);
+      result.notes = false;
+      result.flex = forceFlex || componentsFlex(customComponents);
+      return result;
+    }
+
+    // put all the content in a chart wrapper div
+    chart.addClass('chart-wrapper');
+    chart.wrapInner('<div class="chart-stage"></div>');
+    var chartContent = chart.children('.chart-stage');
+
+    // flex the content if appropriate
+    result.flex = forceFlex || componentsFlex(components);
+    if (result.flex) {
+      // add flex classes
+      chart.addClass('chart-wrapper-flex');
+      chartContent.addClass('chart-stage-flex');
+
+      // additional shim to break out of flexbox sizing
+      chartContent.wrapInner('<div class="chart-shim"></div>');
+      chartContent = chartContent.children('.chart-shim');
+    }
+
+    // set custom data-padding attribute
+    var pad = chart.attr('data-padding');
+    if (pad) {
+      if (pad === "0")
+        chart.addClass('no-padding');
+      else {
+        pad = pad + 'px';
+        chartContent.css('left', pad)
+                    .css('top', pad)
+                    .css('right', pad)
+                    .css('bottom', pad)
+      }
+    }
+
+    // call compoents
+    componentsLayout(components, title, chartContent);
+
+    // also activate components on shiny output
+    findShinyOutput(chartContent).on('shiny:value',
+      function(event) {
+        var element = $(event.target);
+        setTimeout(function() {
+
+          // see if we opted out of flex based on our output (for shiny
+          // we can't tell what type of output we have until after the
+          // value is bound)
+          var components = componentsFind(element);
+          var flex = forceFlex || componentsFlex(components);
+          if (!flex) {
+            chart.css('height', "");
+            setFlex(chart, "");
+            chart.removeClass('chart-wrapper-flex');
+            chartContent.removeClass('chart-stage-flex');
+            chartContent.children().unwrap();
+          }
+
+          // perform layout
+          componentsLayout(components, title, element.parent());
+        }, 10);
+      });
+
+    // add the title
+    var chartTitle = $('<div class="chart-title"></div>');
+    chartTitle.append(title);
+    chart.prepend(chartTitle);
+
+    // add the notes section
+    var chartNotes = $('<div class="chart-notes"></div>');
+    chartNotes.html('&nbsp;');
+    chart.append(chartNotes);
+
+    // attempt to extract notes if we have a component
+    if (components.length)
+      result.notes = extractChartNotes(chartContent, chartNotes);
+
+    // return result
+    return result;
+  }
+
+  // build a tabset from a section div with the .tabset class
+  function layoutTabset(tabset) {
+
+    // check for fade option
+    var fade = tabset.hasClass("tabset-fade");
+    var pills = tabset.hasClass("tabset-pills");
+    var navClass = pills ? "nav-pills" : "nav-tabs";
+
+    // determine the heading level of the tabset and tabs
+    var match = tabset.attr('class').match(/level(\d) /);
+    if (match === null)
+      return;
+    var tabsetLevel = Number(match[1]);
+    var tabLevel = tabsetLevel + 1;
+
+    // find all subheadings immediately below
+    var tabs = tabset.find("div.section.level" + tabLevel);
+    if (!tabs.length)
+      return;
+
+    // create tablist and tab-content elements
+    var tabList = $('<ul class="nav ' + navClass + '" role="tablist"></ul>');
+    $(tabs[0]).before(tabList);
+    var tabContent = $('<div class="tab-content"></div>');
+    $(tabs[0]).before(tabContent);
+
+    // build the tabset
+    var activeTab = 0;
+    tabs.each(function(i) {
+
+      // get the tab div
+      var tab = $(tabs[i]);
+
+      // get the id then sanitize it for use with bootstrap tabs
+      var id = tab.attr('id');
+
+      // see if this is marked as the active tab
+      if (tab.hasClass('active'))
+        activeTab = i;
+
+      // sanitize the id for use with bootstrap tabs
+      id = id.replace(/[.\/?&!#<>]/g, '').replace(/\s/g, '_');
+      tab.attr('id', id);
+
+      // get the heading element within it and grab it's text
+      var heading = tab.find('h' + tabLevel + ':first');
+      var headingDom = heading.contents();
+
+      // build and append the tab list item
+      var a = $('<a role="tab" data-toggle="tab" data-bs-toggle="tab" class="nav-link"></a>');
+      a.append(headingDom);
+      a.attr('href', '#' + id);
+      a.attr('aria-controls', id);
+      var li = $('<li role="presentation" class="nav-item"></li>');
+      li.append(a);
+      tabList.append(li);
+
+      // set it's attributes
+      tab.attr('role', 'tabpanel');
+      tab.addClass('tab-pane');
+      tab.addClass('tabbed-pane');
+      tab.addClass('no-title');
+      if (fade)
+        tab.addClass('fade');
+
+      // move it into the tab content div
+      tab.detach().appendTo(tabContent);
+    });
+
+    // set active tab
+    $(tabList.children()[activeTab]).tab("show");
+    var active = $(tabContent.children('div.section')[activeTab]);
+    active.addClass('active');
+    if (fade)
+      active.addClass('in');
+
+    // add nav-tabs-custom
+    tabset.addClass('nav-tabs-custom');
+
+    // internal layout is dashboard-column with tab-content flexing
+    tabset.addClass('dashboard-column');
+    setFlex(tabContent, 1);
+  }
+
+  // one time global initialization for components
+  function componentsInit(dashboardContainer) {
+    for (var i=0; i<window.FlexDashboardComponents.length; i++) {
+      var component = window.FlexDashboardComponents[i];
+      if (component.init)
+        component.init(dashboardContainer);
+    }
+  }
+
+  // find components that apply within a container
+  function componentsFind(container) {
+
+    // look for components
+    var components = [];
+    for (var i=0; i<window.FlexDashboardComponents.length; i++) {
+      var component = window.FlexDashboardComponents[i];
+      if (component.find(container).length)
+        components.push(component);
+    }
+
+    // if there were none then use a special flowing content component
+    // that just adds a scrollbar in fillPage mode
+    if (components.length == 0) {
+      components.push({
+        find: function(container) {
+          return container;
+        },
+
+        flex: function(fillPage) {
+          return fillPage;
+        },
+
+        layout: function(title, container, element, fillPage) {
+          if (fillPage) {
+            container.addClass('flowing-content-shim');
+            container.addClass('flowing-content-container');
+          }
+        }
+      });
+    }
+
+    return components;
+  }
+
+  // if there is a custom component then pick it out
+  function componentsCustom(components) {
+    var customComponent = [];
+    for (var i=0; i<components.length; i++)
+      if (components[i].type === "custom") {
+        customComponent.push(components[i]);
+        break;
+      }
+    return customComponent;
+  }
+
+  // query all components for flex
+  function componentsFlex(components) {
+
+    // no components at all means no flex
+    if (components.length === 0)
+      return false;
+
+    // otherwise query components (assume true unless we see false)
+    var isMobile = isMobilePhone();
+    for (var i=0; i<components.length; i++)
+      if (components[i].flex && !components[i].flex(_options.fillPage))
+        return false;
+    return true;
+  }
+
+  // layout all components
+  function componentsLayout(components, title, container) {
+    var isMobile = isMobilePhone();
+    for (var i=0; i<components.length; i++) {
+      var element = components[i].find(container);
+      if (components[i].layout) {
+        // call layout (don't call other components if it returns false)
+        var result = components[i].layout(title, container, element, _options.fillPage);
+        if (result === false)
+          return;
+      }
+    }
+  }
+
+  // get a reference to the h3, discover it's inner html, and remove it
+  function extractTitle(container) {
+    var h3 = container.children('h3').first();
+    var title = '';
+    if (!container.hasClass('no-title'))
+      title = h3.contents();
+    h3.detach();
+    return title;
+  }
+
+  // extract chart notes
+  function extractChartNotes(chartContent, chartNotes) {
+    // look for a terminating blockquote or image caption
+    var blockquote = chartContent.children('blockquote:last-child');
+    var caption = chartContent.children('div.image-container')
+                              .children('p.caption');
+    if (blockquote.length) {
+      chartNotes.empty().append(blockquote.children('p:first-child').contents());
+      blockquote.remove();
+      return true;
+    } else if (caption.length) {
+      chartNotes.empty().append(caption.contents());
+      caption.remove();
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  function findShinyOutput(chartContent) {
+    return chartContent.find('.shiny-text-output, .shiny-html-output');
+  }
+
+  // safely detect rendering on a mobile phone
+  function isMobilePhone() {
+    try
+    {
+      return ! window.matchMedia("only screen and (min-width: 768px)").matches;
+    }
+    catch(e) {
+      return false;
+    }
+  }
+
+  function isFillPage() {
+    return _options.fillPage;
+  }
+
+  // detect portrait mode
+  function isPortrait() {
+    return ($(window).width() < $(window).height());
+  }
+
+  // safely detect rendering on a tablet
+  function isTablet() {
+    try
+    {
+      return window.matchMedia("only screen and (min-width: 769px) and (max-width: 992px)").matches;
+    }
+    catch(e) {
+      return false;
+    }
+  }
+
+  // test whether this is a shiny doc
+  function isShinyDoc() {
+    return (typeof(window.Shiny) !== "undefined" && !!window.Shiny.outputBindings);
+  }
+
+  // set flex using vendor specific prefixes
+  function setFlex(el, flex) {
+    el.css('-webkit-box-flex', flex)
+      .css('-webkit-flex', flex)
+      .css('-ms-flex', flex)
+      .css('flex', flex);
+  }
+
+  // support bookmarking of pages
+  function handleLocationHash() {
+
+    // restore tab/page from bookmark
+    var hash = window.decodeURIComponent(window.location.hash);
+    if (hash.length > 0) {
+      // Update the tab without .showPage() so that we don't change page history
+      $('ul.nav a[href="' + hash + '"]').tab('show');
+    }
+
+    // navigate to a tab when the history changes
+    window.addEventListener("popstate", function(e) {
+      var hash = window.decodeURIComponent(window.location.hash);
+      var activeTab = $('ul.nav a[href="' + hash + '"]');
+      if (activeTab.length) {
+        activeTab.tab('show');
+      } else {
+        // returning to the base page URL without a hash activates first tab
+        $('ul.nav a:first').tab('show');
+      }
+    });
+
+    // add a hash to the URL when the user clicks on a tab/page
+    $('.navbar-nav a[data-toggle="tab"]').on('click', function(e) {
+      var baseUrl = FlexDashboardUtils.urlWithoutHash(window.location.href);
+      var hash = FlexDashboardUtils.urlHash($(this).attr('href'));
+      var href = baseUrl + hash;
+      FlexDashboardUtils.setLocation(href);
+    });
+
+    // handle clicks of other links that should activate pages
+    var navPages = $('ul.navbar-nav li a[data-toggle=tab]');
+    navPages.each(function() {
+      var href =  $(this).attr('href');
+      var links = $('a[href="' + href + '"][data-toggle!=tab]');
+      links.each(function() {
+        $(this).on('click', function(e) {
+          window.FlexDashboardUtils.showPage(href);
+        });
+      });
+    });
+  }
+
+  // tweak Prism highlighting
+  function initPrismHighlighting() {
+
+    if (window.Prism) {
+      Prism.languages.insertBefore('r', 'comment', {
+        'heading': [
+          {
+            // title 1
+        	  // =======
+
+        	  // title 2
+        	  // -------
+        	  pattern: /\w+.*(?:\r?\n|\r)(?:====+|----+)/,
+            alias: 'operator'
+          },
+          {
+            // ### title 3
+            pattern: /(^\s*)###[^#].+/m,
+            lookbehind: true,
+            alias: 'operator'
+          }
+        ]
+      });
+
+      // prism highlight
+      Prism.highlightAll();
+    }
+  }
+
+  FlexDashboard.prototype = {
+    constructor: FlexDashboard,
+    init: init,
+    isMobilePhone: isMobilePhone,
+    isFillPage: isFillPage
+  };
+
+  return FlexDashboard;
+
+})();
+
+// utils
+window.FlexDashboardUtils = {
+  resizableImage: function(img) {
+    var src = img.attr('src');
+    var url = 'url("' + src + '")';
+    img.parent().css('background', url)
+                .css('background-size', 'contain')
+                .css('background-repeat', 'no-repeat')
+                .css('background-position', 'center')
+                .addClass('image-container');
+  },
+  setLocation: function(href) {
+    if (history && history.pushState) {
+      history.pushState(null, null, href);
+    } else {
+      window.location.replace(href);
+    }
+    setTimeout(function() {
+        window.scrollTo(0, 0);
+    }, 10);
+  },
+  showPage: function(href) {
+    $('ul.navbar-nav li a[href="' + href + '"]').tab('show');
+    var baseUrl = this.urlWithoutHash(window.location.href);
+    var loc = baseUrl + href;
+    this.setLocation(loc);
+  },
+  showLinkedValue: function(href) {
+    // check for a page link
+    if ($('ul.navbar-nav li a[data-toggle=tab][href="' + href + '"]').length > 0)
+      this.showPage(href);
+    else
+      window.open(href);
+  },
+  urlWithoutHash: function(url) {
+    var hashLoc = url.indexOf('#');
+    if (hashLoc != -1)
+      return url.substring(0, hashLoc);
+    else
+      return url;
+  },
+  urlHash: function(url) {
+    var hashLoc = url.indexOf('#');
+    if (hashLoc != -1)
+      return url.substring(hashLoc);
+    else
+      return "";
+  }
+};
+
+window.FlexDashboard = new FlexDashboard();
+
+// empty content
+window.FlexDashboardComponents.push({
+  find: function(container) {
+    if (container.find('p').length == 0)
+      return container;
+    else
+      return $();
+  }
+})
+
+// plot image
+window.FlexDashboardComponents.push({
+
+  find: function(container) {
+    return container.children('p')
+                    .children('img:only-child');
+  },
+
+  layout: function(title, container, element, fillPage) {
+    FlexDashboardUtils.resizableImage(element);
+  }
+});
+
+// plot image (figure style)
+window.FlexDashboardComponents.push({
+
+  find: function(container) {
+    return container.children('div.figure').children('img');
+  },
+
+  layout: function(title, container, element, fillPage) {
+    FlexDashboardUtils.resizableImage(element);
+  }
+});
+
+// htmlwidget
+window.FlexDashboardComponents.push({
+
+  init: function(dashboardContainer) {
+    // trigger "shown" after initial layout to force static htmlwidgets
+    // in runtime: shiny to be resized after the dom has been transformed
+    dashboardContainer.on('flexdashboard:layoutcomplete', function(event) {
+      setTimeout(function() {
+        dashboardContainer.trigger('shown');
+      }, 200);
+    });
+  },
+
+  find: function(container) {
+    return container.children('div[id^="htmlwidget-"],div.html-widget');
+  }
+});
+
+// gauge
+window.FlexDashboardComponents.push({
+
+  find: function(container) {
+    return container.children('div.html-widget.gauge');
+  },
+
+  flex: function(fillPage) {
+    return false;
+  },
+
+  layout: function(title, container, element, fillPage) {
+
+
+  }
+
+});
+
+// shiny output
+window.FlexDashboardComponents.push({
+  find: function(container) {
+    return container.children('div[class^="shiny-"]');
+  }
+});
+
+// bootstrap table
+window.FlexDashboardComponents.push({
+
+  find: function(container) {
+    var bsTable = container.find('table.table');
+    if (bsTable.length !== 0)
+      return bsTable;
+    else
+      return container.find('tr.header').parent('thead').parent('table');
+  },
+
+  flex: function(fillPage) {
+    return fillPage;
+  },
+
+  layout: function(title, container, element, fillPage) {
+
+    // alias variables
+    var bsTable = element;
+
+    // fixup xtable generated tables with a proper thead
+    var headerRow = bsTable.find('tbody > tr:first-child > th').parent();
+    if (headerRow.length > 0) {
+      var thead = $('<thead></thead>');
+      bsTable.prepend(thead);
+      headerRow.detach().appendTo(thead);
+    }
+
+    // improve appearance
+    container.addClass('bootstrap-table');
+
+    // for fill page provide scrolling w/ sticky headers
+    if (fillPage) {
+      // force scrollbar on overflow
+      container.addClass('flowing-content-shim');
+
+      // stable table headers when scrolling
+      bsTable.stickyTableHeaders({
+        scrollableArea: container
+      });
+    }
+  }
+});
+
+// embedded shiny app
+window.FlexDashboardComponents.push({
+
+  find: function(container) {
+    return container.find('iframe.shiny-frame');
+  },
+
+  flex: function(fillPage) {
+    return fillPage;
+  },
+
+  layout: function(title, container, element, fillPage) {
+    if (fillPage) {
+      element.attr('height', '100%');
+    } else {
+      // provide default height if necessary
+      var height = element.get(0).style.height;
+      if (!height)
+        height = element.attr('height');
+      if (!height)
+        element.attr('height', 500);
+    }
+  }
+});
+
+// shiny fillRow or fillCol
+window.FlexDashboardComponents.push({
+
+  find: function(container) {
+    return container.find('.flexfill-container');
+  },
+
+  flex: function(fillPage) {
+    return fillPage;
+  },
+
+  layout: function(title, container, element, fillPage) {
+    if (fillPage)
+      element.css('height', '100%');
+    else {
+      // provide default height if necessary
+      var height = element.get(0).style.height;
+      if (height === "100%" || height === "auto" || height === "initial" ||
+          height === "inherit" || !height) {
+        element.css('height', 500);
+      }
+    }
+  }
+});
+
+// valueBox
+window.FlexDashboardComponents.push({
+
+  type: "custom",
+
+  find: function(container) {
+    if (container.find('span.value-output, .shiny-valuebox-output').length)
+      return container;
+    else
+      return $();
+  },
+
+  flex: function(fillPage) {
+    return false;
+  },
+
+  layout: function(title, container, element, fillPage) {
+
+    // alias variables
+    var chartTitle = title;
+    var valueBox = element;
+
+    // add value-box class to container
+    container.addClass('value-box');
+
+    // value paragraph
+    var value = $('<p class="value"></p>');
+
+    // if we have shiny-text-output then just move it in
+    var valueOutputSpan = [];
+    var shinyOutput = valueBox.find('.shiny-valuebox-output').detach();
+    if (shinyOutput.length) {
+      valueBox.children().remove();
+      shinyOutput.html("&mdash;");
+      value.append(shinyOutput);
+    } else {
+      // extract the value (remove leading vector index)
+      var chartValue = valueBox.text().trim();
+      chartValue = chartValue.replace("[1] ", "");
+      valueOutputSpan = valueBox.find('span.value-output').detach();
+      valueBox.children().remove();
+      value.text(chartValue);
+    }
+
+    // caption
+    var caption = $('<p class="caption"></p>');
+    caption.append(chartTitle);
+
+    // build inner div for value box and add it
+    var inner = $('<div class="inner"></div>');
+    inner.append(value);
+    inner.append(caption);
+    valueBox.append(inner);
+
+    // add icon if specified
+    var icon = $('<div class="icon"><i></i></div>');
+    valueBox.append(icon);
+    function setIcon(chartIcon) {
+      var iconLib = "";
+      var iconSplit = chartIcon.split(" ");
+      if (iconSplit.length > 1) {
+        iconLib = iconSplit[0];
+        chartIcon = iconSplit.slice(1).join(" ");
+      } else {
+        var components = chartIcon.split("-");
+        if (components.length > 1)
+          iconLib = components[0];
+      }
+      icon.children('i').attr('class', iconLib + ' ' + chartIcon);
+    }
+    var chartIcon = valueBox.attr('data-icon');
+    if (chartIcon)
+      setIcon(chartIcon);
+
+    // handle data attributes in valueOutputSpan
+    function handleValueOutput(valueOutput) {
+
+      // caption
+      var dataCaption = valueOutput.attr('data-caption');
+      if (dataCaption)
+        caption.html(dataCaption);
+
+      // icon
+      var dataIcon = valueOutput.attr('data-icon');
+      if (dataIcon)
+        setIcon(dataIcon);
+
+      // If valueBox(color=) was an accent color, this attr should
+      // be populated with the accent color and the relevant CSS comes
+      // in through HTML dependencies
+      var dataColorAccent = valueOutput.attr('data-color-accent');
+      var valueBoxClasses = "value-box-" + (["primary", "info", "danger", "warning", "success"].join(" value-box-"));
+      if (dataColorAccent) {
+        valueBox.removeClass(valueBoxClasses);
+        valueBox.addClass('value-box-' + dataColorAccent);
+      }
+
+      // If valueBox(color=) was a CSS color, these other data-color-*
+      // attrs will be populated
+      var dataColor = valueOutput.attr('data-color');
+      if (dataColor) {
+        valueBox.removeClass(valueBoxClasses);
+        valueBox.css('background-color', dataColor);
+      }
+      var dataColorText = valueOutput.attr('data-color-text');
+      if (dataColorText) {
+        valueBox.find(".inner").css('color', dataColorText);
+      }
+      var dataColorIcon = valueOutput.attr('data-color-icon');
+      if (dataColorIcon) {
+        valueBox.find(".icon").css('color', dataColorIcon);
+      }
+
+      // url
+      var dataHref = valueOutput.attr('data-href');
+      if (dataHref) {
+        valueBox.addClass('linked-value');
+        valueBox.off('click.value-box');
+        valueBox.on('click.value-box', function(e) {
+          window.FlexDashboardUtils.showLinkedValue(dataHref);
+        });
+      }
+    }
+
+    // check for a valueOutputSpan
+    if (valueOutputSpan.length > 0) {
+      handleValueOutput(valueOutputSpan);
+    }
+
+    // if we have a shinyOutput then bind a listener to handle
+    // new valueOutputSpan values
+    shinyOutput.on('shiny:value',
+      function(event) {
+        var element = $(event.target);
+        setTimeout(function() {
+          var valueOutputSpan = element.find('span.value-output');
+          if (valueOutputSpan.length > 0)
+            handleValueOutput(valueOutputSpan);
+        }, 10);
+      }
+    );
+  }
+});
+</script>
+
+<div id="dashboard-container">
+
+<div class="knitr-options" data-fig-width="576" data-fig-height="460">
+
+</div>
+<div class="knitr-options" data-fig-width="576" data-fig-height="460">
+
+</div>
+<div class="knitr-options" data-fig-width="576" data-fig-height="460">
+
+</div>
+<div id="section" class="section level2">
+<h2></h2>
+<div id="monthly-average-maximum-temperature" class="section level3">
+<h3>Monthly Average Maximum Temperature</h3>
+<div class="knitr-options" data-fig-width="576" data-fig-height="460">
+
+</div>
+<div class="plotly html-widget html-fill-item" id="htmlwidget-ceff6408ddea03328468" style="width:576px;height:460.8px;"></div>
+<script type="application/json" data-for="htmlwidget-ceff6408ddea03328468">{"x":{"data":[{"x":[10957,10988,11017,11048,11078,11109,11139,11170,11201,11231,11262,11292,11323,11354,11382,11413,11443,11474,11504,11535,11566,11596,11627,11657,11688,11719,11747,11778,11808,11839,11869,11900,11931,11961,11992,12022,12053,12084,12112,12143,12173,12204,12234,12265,12296,12326,12357,12387,12418,12449,12478,12509,12539,12570,12600,12631,12662,12692,12723,12753,12784,12815,12843,12874,12904,12935,12965,12996,13027,13057,13088,13118,13149,13180,13208,13239,13269,13300,13330,13361,13392,13422,13453,13483,13514,13545,13573,13604,13634,13665,13695,13726,13757,13787,13818,13848,13879,13910,13939,13970,14000,14031,14061,14092,14123,14153,14184,14214,14245,14276,14304,14335,14365,14396,14426,14457,14488,14518,14549,14579,14610,14641,14669,14700,14730,14761,14791,14822,14853,14883,14914,14944],"y":[-0.72540716612377987,2.6819788918205809,9.7456360946745573,11.808610968733982,20.00119462419114,23.719626652838993,24.472039225546894,24.695931588494428,21.306406538360136,15.861943823017649,7.493366157035501,-1.1762512512512515,0.049568527918782759,1.815961915429851,3.1795414901569892,14.145120041753653,20.972401247401248,25.028501291989663,25.711267258382641,28.353587786259542,22.325211159457385,16.940611995104039,12.4987322515213,6.0880371093749988,3.6317580803134186,5.1492888402625825,7.0303598200899575,14.411495983935744,17.62388683886839,24.76317839522202,28.16628712871287,27.864122520713032,24.454637351528937,13.687200000000001,7.1616688061617442,1.3002712700369887,-3.8008793356130917,-1.4926438653637359,7.0240524781341103,11.801683417085426,18.258588351431392,23.059939531368101,26.554494655004859,26.845700598802395,22.092727272727274,14.211579956844881,10.472668167041761,3.0478281853281852,-4.8290540540540547,1.0468589083419171,7.3422785409758404,13.137651920272241,21.60397005444646,23.431797989244796,25.416408876933421,24.80119638826185,23.049907918968692,15.054337485843714,9.6184234647112721,2.5460324616771852,-1.4063083580050126,2.257012570865172,3.8373104371097266,15.286609620721554,17.493296213808463,27.254652777777778,28.251134540453815,28.122242072353732,24.683717217787912,15.13339982269504,11.19041095890411,0.46819571865443127,4.6895842450765901,1.8014524328249812,6.0056570155902058,14.972345735027224,19.849369290996083,23.938377392889699,27.908731393023771,25.990698198198199,20.361899416255049,14.197861309138041,11.083054253181515,6.5040705267740515,1.937450636243967,-3.0102651423011442,5.9624774774774778,10.9792439703154,21.542776777677769,25.990402621722847,25.993839508979313,26.710333716915997,24.02193192713327,19.101644279759146,7.7488899385923498,1.5514504525411954,1.9842720261743418,1.0284114052953155,4.8592922427935319,16.590956439393942,18.221410636840904,25.761245758603973,27.247361046240076,25.08439319822968,22.797243346007608,14.72062977541097,7.6217455258641813,2.8419458467186787,-3.1952369779446257,2.332630241423121,7.1479344564966523,14.727613554434031,19.90829482439926,22.772618763428024,24.556972477064221,26.262227711655065,21.483478465521301,13.277068505338075,11.364440350069092,1.340205265506474,-0.5707333482843685,-0.090052356020941929,9.4226657645466858,17.178325929389757,22.194524236983842,24.965572990965288,28.78106976744186,26.603317972350229,22.525231646471845,15.24405417814509,9.1182685428094423,-0.40472312703583208],"text":["month_date: 2000-01-01<br />avg_tmax: -0.72540717","month_date: 2000-02-01<br />avg_tmax:  2.68197889","month_date: 2000-03-01<br />avg_tmax:  9.74563609","month_date: 2000-04-01<br />avg_tmax: 11.80861097","month_date: 2000-05-01<br />avg_tmax: 20.00119462","month_date: 2000-06-01<br />avg_tmax: 23.71962665","month_date: 2000-07-01<br />avg_tmax: 24.47203923","month_date: 2000-08-01<br />avg_tmax: 24.69593159","month_date: 2000-09-01<br />avg_tmax: 21.30640654","month_date: 2000-10-01<br />avg_tmax: 15.86194382","month_date: 2000-11-01<br />avg_tmax:  7.49336616","month_date: 2000-12-01<br />avg_tmax: -1.17625125","month_date: 2001-01-01<br />avg_tmax:  0.04956853","month_date: 2001-02-01<br />avg_tmax:  1.81596192","month_date: 2001-03-01<br />avg_tmax:  3.17954149","month_date: 2001-04-01<br />avg_tmax: 14.14512004","month_date: 2001-05-01<br />avg_tmax: 20.97240125","month_date: 2001-06-01<br />avg_tmax: 25.02850129","month_date: 2001-07-01<br />avg_tmax: 25.71126726","month_date: 2001-08-01<br />avg_tmax: 28.35358779","month_date: 2001-09-01<br />avg_tmax: 22.32521116","month_date: 2001-10-01<br />avg_tmax: 16.94061200","month_date: 2001-11-01<br />avg_tmax: 12.49873225","month_date: 2001-12-01<br />avg_tmax:  6.08803711","month_date: 2002-01-01<br />avg_tmax:  3.63175808","month_date: 2002-02-01<br />avg_tmax:  5.14928884","month_date: 2002-03-01<br />avg_tmax:  7.03035982","month_date: 2002-04-01<br />avg_tmax: 14.41149598","month_date: 2002-05-01<br />avg_tmax: 17.62388684","month_date: 2002-06-01<br />avg_tmax: 24.76317840","month_date: 2002-07-01<br />avg_tmax: 28.16628713","month_date: 2002-08-01<br />avg_tmax: 27.86412252","month_date: 2002-09-01<br />avg_tmax: 24.45463735","month_date: 2002-10-01<br />avg_tmax: 13.68720000","month_date: 2002-11-01<br />avg_tmax:  7.16166881","month_date: 2002-12-01<br />avg_tmax:  1.30027127","month_date: 2003-01-01<br />avg_tmax: -3.80087934","month_date: 2003-02-01<br />avg_tmax: -1.49264387","month_date: 2003-03-01<br />avg_tmax:  7.02405248","month_date: 2003-04-01<br />avg_tmax: 11.80168342","month_date: 2003-05-01<br />avg_tmax: 18.25858835","month_date: 2003-06-01<br />avg_tmax: 23.05993953","month_date: 2003-07-01<br />avg_tmax: 26.55449466","month_date: 2003-08-01<br />avg_tmax: 26.84570060","month_date: 2003-09-01<br />avg_tmax: 22.09272727","month_date: 2003-10-01<br />avg_tmax: 14.21157996","month_date: 2003-11-01<br />avg_tmax: 10.47266817","month_date: 2003-12-01<br />avg_tmax:  3.04782819","month_date: 2004-01-01<br />avg_tmax: -4.82905405","month_date: 2004-02-01<br />avg_tmax:  1.04685891","month_date: 2004-03-01<br />avg_tmax:  7.34227854","month_date: 2004-04-01<br />avg_tmax: 13.13765192","month_date: 2004-05-01<br />avg_tmax: 21.60397005","month_date: 2004-06-01<br />avg_tmax: 23.43179799","month_date: 2004-07-01<br />avg_tmax: 25.41640888","month_date: 2004-08-01<br />avg_tmax: 24.80119639","month_date: 2004-09-01<br />avg_tmax: 23.04990792","month_date: 2004-10-01<br />avg_tmax: 15.05433749","month_date: 2004-11-01<br />avg_tmax:  9.61842346","month_date: 2004-12-01<br />avg_tmax:  2.54603246","month_date: 2005-01-01<br />avg_tmax: -1.40630836","month_date: 2005-02-01<br />avg_tmax:  2.25701257","month_date: 2005-03-01<br />avg_tmax:  3.83731044","month_date: 2005-04-01<br />avg_tmax: 15.28660962","month_date: 2005-05-01<br />avg_tmax: 17.49329621","month_date: 2005-06-01<br />avg_tmax: 27.25465278","month_date: 2005-07-01<br />avg_tmax: 28.25113454","month_date: 2005-08-01<br />avg_tmax: 28.12224207","month_date: 2005-09-01<br />avg_tmax: 24.68371722","month_date: 2005-10-01<br />avg_tmax: 15.13339982","month_date: 2005-11-01<br />avg_tmax: 11.19041096","month_date: 2005-12-01<br />avg_tmax:  0.46819572","month_date: 2006-01-01<br />avg_tmax:  4.68958425","month_date: 2006-02-01<br />avg_tmax:  1.80145243","month_date: 2006-03-01<br />avg_tmax:  6.00565702","month_date: 2006-04-01<br />avg_tmax: 14.97234574","month_date: 2006-05-01<br />avg_tmax: 19.84936929","month_date: 2006-06-01<br />avg_tmax: 23.93837739","month_date: 2006-07-01<br />avg_tmax: 27.90873139","month_date: 2006-08-01<br />avg_tmax: 25.99069820","month_date: 2006-09-01<br />avg_tmax: 20.36189942","month_date: 2006-10-01<br />avg_tmax: 14.19786131","month_date: 2006-11-01<br />avg_tmax: 11.08305425","month_date: 2006-12-01<br />avg_tmax:  6.50407053","month_date: 2007-01-01<br />avg_tmax:  1.93745064","month_date: 2007-02-01<br />avg_tmax: -3.01026514","month_date: 2007-03-01<br />avg_tmax:  5.96247748","month_date: 2007-04-01<br />avg_tmax: 10.97924397","month_date: 2007-05-01<br />avg_tmax: 21.54277678","month_date: 2007-06-01<br />avg_tmax: 25.99040262","month_date: 2007-07-01<br />avg_tmax: 25.99383951","month_date: 2007-08-01<br />avg_tmax: 26.71033372","month_date: 2007-09-01<br />avg_tmax: 24.02193193","month_date: 2007-10-01<br />avg_tmax: 19.10164428","month_date: 2007-11-01<br />avg_tmax:  7.74888994","month_date: 2007-12-01<br />avg_tmax:  1.55145045","month_date: 2008-01-01<br />avg_tmax:  1.98427203","month_date: 2008-02-01<br />avg_tmax:  1.02841141","month_date: 2008-03-01<br />avg_tmax:  4.85929224","month_date: 2008-04-01<br />avg_tmax: 16.59095644","month_date: 2008-05-01<br />avg_tmax: 18.22141064","month_date: 2008-06-01<br />avg_tmax: 25.76124576","month_date: 2008-07-01<br />avg_tmax: 27.24736105","month_date: 2008-08-01<br />avg_tmax: 25.08439320","month_date: 2008-09-01<br />avg_tmax: 22.79724335","month_date: 2008-10-01<br />avg_tmax: 14.72062978","month_date: 2008-11-01<br />avg_tmax:  7.62174553","month_date: 2008-12-01<br />avg_tmax:  2.84194585","month_date: 2009-01-01<br />avg_tmax: -3.19523698","month_date: 2009-02-01<br />avg_tmax:  2.33263024","month_date: 2009-03-01<br />avg_tmax:  7.14793446","month_date: 2009-04-01<br />avg_tmax: 14.72761355","month_date: 2009-05-01<br />avg_tmax: 19.90829482","month_date: 2009-06-01<br />avg_tmax: 22.77261876","month_date: 2009-07-01<br />avg_tmax: 24.55697248","month_date: 2009-08-01<br />avg_tmax: 26.26222771","month_date: 2009-09-01<br />avg_tmax: 21.48347847","month_date: 2009-10-01<br />avg_tmax: 13.27706851","month_date: 2009-11-01<br />avg_tmax: 11.36444035","month_date: 2009-12-01<br />avg_tmax:  1.34020527","month_date: 2010-01-01<br />avg_tmax: -0.57073335","month_date: 2010-02-01<br />avg_tmax: -0.09005236","month_date: 2010-03-01<br />avg_tmax:  9.42266576","month_date: 2010-04-01<br />avg_tmax: 17.17832593","month_date: 2010-05-01<br />avg_tmax: 22.19452424","month_date: 2010-06-01<br />avg_tmax: 24.96557299","month_date: 2010-07-01<br />avg_tmax: 28.78106977","month_date: 2010-08-01<br />avg_tmax: 26.60331797","month_date: 2010-09-01<br />avg_tmax: 22.52523165","month_date: 2010-10-01<br />avg_tmax: 15.24405418","month_date: 2010-11-01<br />avg_tmax:  9.11826854","month_date: 2010-12-01<br />avg_tmax: -0.40472313"],"type":"scatter","mode":"lines","line":{"width":3.0236220472440949,"color":"rgba(70,130,180,1)","dash":"solid"},"hoveron":"points","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null}],"layout":{"margin":{"t":23.305936073059364,"r":7.3059360730593621,"b":37.260273972602747,"l":37.260273972602747},"paper_bgcolor":"rgba(255,255,255,1)","font":{"color":"rgba(0,0,0,1)","family":"","size":14.611872146118724},"xaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[10757.65,15143.35],"tickmode":"array","ticktext":["2000","2005","2010"],"tickvals":[10957,12784,14610],"categoryorder":"array","categoryarray":["2000","2005","2010"],"nticks":null,"ticks":"","tickcolor":null,"ticklen":3.6529680365296811,"tickwidth":0,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":11.68949771689498},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(235,235,235,1)","gridwidth":0.66417600664176002,"zeroline":false,"anchor":"y","title":{"text":"Date","font":{"color":"rgba(0,0,0,1)","family":"","size":14.611872146118724}},"hoverformat":".2f"},"yaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[-6.509560245128851,30.461575958516654],"tickmode":"array","ticktext":["0","10","20","30"],"tickvals":[8.8817841970012523e-16,10.000000000000002,20,30],"categoryorder":"array","categoryarray":["0","10","20","30"],"nticks":null,"ticks":"","tickcolor":null,"ticklen":3.6529680365296811,"tickwidth":0,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":11.68949771689498},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(235,235,235,1)","gridwidth":0.66417600664176002,"zeroline":false,"anchor":"x","title":{"text":"Average Maximum Temperature (°C)","font":{"color":"rgba(0,0,0,1)","family":"","size":14.611872146118724}},"hoverformat":".2f"},"shapes":[],"showlegend":false,"legend":{"bgcolor":null,"bordercolor":null,"borderwidth":0,"font":{"color":"rgba(0,0,0,1)","family":"","size":11.68949771689498}},"hovermode":"closest","barmode":"relative"},"config":{"doubleClick":"reset","modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"source":"A","attrs":{"5491e8279fa":{"x":{},"y":{},"type":"scatter"}},"cur_data":"5491e8279fa","visdat":{"5491e8279fa":["function (y) ","x"]},"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.20000000000000001,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+</div>
+</div>
+<div id="section-1" class="section level2">
+<h2></h2>
+<div id="average-maximum-temperature-by-month" class="section level3">
+<h3>Average Maximum Temperature by Month</h3>
+<div class="knitr-options" data-fig-width="576" data-fig-height="460">
+
+</div>
+<div class="plotly html-widget html-fill-item" id="htmlwidget-a462eb86e5c0877cbedb" style="width:576px;height:460.8px;"></div>
+<script type="application/json" data-for="htmlwidget-a462eb86e5c0877cbedb">{"x":{"data":[{"orientation":"v","width":[0.89999999999999991,0.90000000000000013,0.90000000000000036,0.90000000000000036,0.90000000000000036,0.90000000000000036,0.90000000000000036,0.89999999999999947,0.89999999999999858,0.89999999999999858,0.89999999999999858,0.89999999999999858],"base":[-0.20318052039071202,0,0,0,0,0,0,0,0,0,0,0],"x":[1,2,3,4,5,6,7,8,9,10,11,12],"y":[0.20318052039071202,1.2291485311434271,6.5052005289132486,14.094514325551177,19.788155736094996,24.607810378731926,26.641782352525794,26.484886522930378,22.64567202365631,15.220939193754241,9.5792425832629338,2.1915511325750097],"text":["month_name: Jan<br />avg_temperature: -0.2031805","month_name: Feb<br />avg_temperature:  1.2291485","month_name: Mar<br />avg_temperature:  6.5052005","month_name: Apr<br />avg_temperature: 14.0945143","month_name: May<br />avg_temperature: 19.7881557","month_name: Jun<br />avg_temperature: 24.6078104","month_name: Jul<br />avg_temperature: 26.6417824","month_name: Aug<br />avg_temperature: 26.4848865","month_name: Sep<br />avg_temperature: 22.6456720","month_name: Oct<br />avg_temperature: 15.2209392","month_name: Nov<br />avg_temperature:  9.5792426","month_name: Dec<br />avg_temperature:  2.1915511"],"type":"bar","textposition":"none","marker":{"autocolorscale":false,"color":"rgba(70,130,180,1)","line":{"width":1.8897637795275593,"color":"transparent"}},"showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null}],"layout":{"margin":{"t":23.305936073059364,"r":7.3059360730593621,"b":37.260273972602747,"l":37.260273972602747},"paper_bgcolor":"rgba(255,255,255,1)","font":{"color":"rgba(0,0,0,1)","family":"","size":14.611872146118724},"xaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[0.40000000000000002,12.6],"tickmode":"array","ticktext":["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"],"tickvals":[1,2,3,4.0000000000000009,5,6,7.0000000000000009,8,9,10,11,12],"categoryorder":"array","categoryarray":["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"],"nticks":null,"ticks":"","tickcolor":null,"ticklen":3.6529680365296811,"tickwidth":0,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":11.68949771689498},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(235,235,235,1)","gridwidth":0.66417600664176002,"zeroline":false,"anchor":"y","title":{"text":"Month","font":{"color":"rgba(0,0,0,1)","family":"","size":14.611872146118724}},"hoverformat":".2f"},"yaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[-1.5454286640365376,27.98403049617162],"tickmode":"array","ticktext":["0","10","20"],"tickvals":[0,10,20],"categoryorder":"array","categoryarray":["0","10","20"],"nticks":null,"ticks":"","tickcolor":null,"ticklen":3.6529680365296811,"tickwidth":0,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":11.68949771689498},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(235,235,235,1)","gridwidth":0.66417600664176002,"zeroline":false,"anchor":"x","title":{"text":"Average Maximum Temperature (°C)","font":{"color":"rgba(0,0,0,1)","family":"","size":14.611872146118724}},"hoverformat":".2f"},"shapes":[],"showlegend":false,"legend":{"bgcolor":null,"bordercolor":null,"borderwidth":0,"font":{"color":"rgba(0,0,0,1)","family":"","size":11.68949771689498}},"hovermode":"closest","barmode":"relative"},"config":{"doubleClick":"reset","modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"source":"A","attrs":{"54916c089a80":{"x":{},"y":{},"type":"bar"}},"cur_data":"54916c089a80","visdat":{"54916c089a80":["function (y) ","x"]},"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.20000000000000001,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+</div>
+</div>
+<div id="section-2" class="section level2">
+<h2></h2>
+<div id="maximum-vs-minimum-temperature" class="section level3">
+<h3>Maximum vs Minimum Temperature</h3>
+<div class="knitr-options" data-fig-width="576" data-fig-height="460">
+
+</div>
+<div class="plotly html-widget html-fill-item" id="htmlwidget-da4c3b9d6bed0461e640" style="width:576px;height:460.8px;"></div>
+<script type="application/json" data-for="htmlwidget-da4c3b9d6bed0461e640">{"x":{"data":[{"x":[-11.402657307595893,-7.7717414248021113,-1.8250123334977795,1.3706454918032878,8.3090094574415119,12.748288381742745,13.300729192858936,13.987788436608763,9.6627667984189696,4.2751367478866253,-0.92837173181465282,-10.367984981226536],"y":[-0.72540716612377987,2.6819788918205809,9.7456360946745573,11.808610968733982,20.00119462419114,23.719626652838993,24.472039225546894,24.695931588494428,21.306406538360136,15.861943823017649,7.493366157035501,-1.1762512512512515],"text":["avg_tmin: -11.4026573<br />avg_tmax: -0.72540717<br />factor(year): 2000","avg_tmin:  -7.7717414<br />avg_tmax:  2.68197889<br />factor(year): 2000","avg_tmin:  -1.8250123<br />avg_tmax:  9.74563609<br />factor(year): 2000","avg_tmin:   1.3706455<br />avg_tmax: 11.80861097<br />factor(year): 2000","avg_tmin:   8.3090095<br />avg_tmax: 20.00119462<br />factor(year): 2000","avg_tmin:  12.7482884<br />avg_tmax: 23.71962665<br />factor(year): 2000","avg_tmin:  13.3007292<br />avg_tmax: 24.47203923<br />factor(year): 2000","avg_tmin:  13.9877884<br />avg_tmax: 24.69593159<br />factor(year): 2000","avg_tmin:   9.6627668<br />avg_tmax: 21.30640654<br />factor(year): 2000","avg_tmin:   4.2751367<br />avg_tmax: 15.86194382<br />factor(year): 2000","avg_tmin:  -0.9283717<br />avg_tmax:  7.49336616<br />factor(year): 2000","avg_tmin: -10.3679850<br />avg_tmax: -1.17625125<br />factor(year): 2000"],"type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(248,118,109,1)","opacity":0.80000000000000004,"size":7.559055118110237,"symbol":"circle","line":{"width":1.8897637795275593,"color":"rgba(248,118,109,1)"}},"hoveron":"points","name":"2000","legendgroup":"2000","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[-8.7485025380710617,-8.0586012408347436,-5.8498006975585515,1.4034671532846701,7.8566562662506456,12.983570504527808,13.291987179487181,15.588498727735368,9.7187131504742457,4.8428291727851223,1.6117423281765146,-2.5430630190522763],"y":[0.049568527918782759,1.815961915429851,3.1795414901569892,14.145120041753653,20.972401247401248,25.028501291989663,25.711267258382641,28.353587786259542,22.325211159457385,16.940611995104039,12.4987322515213,6.0880371093749988],"text":["avg_tmin:  -8.7485025<br />avg_tmax:  0.04956853<br />factor(year): 2001","avg_tmin:  -8.0586012<br />avg_tmax:  1.81596192<br />factor(year): 2001","avg_tmin:  -5.8498007<br />avg_tmax:  3.17954149<br />factor(year): 2001","avg_tmin:   1.4034672<br />avg_tmax: 14.14512004<br />factor(year): 2001","avg_tmin:   7.8566563<br />avg_tmax: 20.97240125<br />factor(year): 2001","avg_tmin:  12.9835705<br />avg_tmax: 25.02850129<br />factor(year): 2001","avg_tmin:  13.2919872<br />avg_tmax: 25.71126726<br />factor(year): 2001","avg_tmin:  15.5884987<br />avg_tmax: 28.35358779<br />factor(year): 2001","avg_tmin:   9.7187132<br />avg_tmax: 22.32521116<br />factor(year): 2001","avg_tmin:   4.8428292<br />avg_tmax: 16.94061200<br />factor(year): 2001","avg_tmin:   1.6117423<br />avg_tmax: 12.49873225<br />factor(year): 2001","avg_tmin:  -2.5430630<br />avg_tmax:  6.08803711<br />factor(year): 2001"],"type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(219,142,0,1)","opacity":0.80000000000000004,"size":7.559055118110237,"symbol":"circle","line":{"width":1.8897637795275593,"color":"rgba(219,142,0,1)"}},"hoveron":"points","name":"2001","legendgroup":"2001","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[-4.8432246998284745,-6.4652447361225063,-3.8037212787212731,2.7503389404971093,5.535598227474142,12.738295661210699,15.691557316167374,14.964391468005028,11.48751263902933,3.9686122547832419,-0.7731163505894435,-7.3139443212613982],"y":[3.6317580803134186,5.1492888402625825,7.0303598200899575,14.411495983935744,17.62388683886839,24.76317839522202,28.16628712871287,27.864122520713032,24.454637351528937,13.687200000000001,7.1616688061617442,1.3002712700369887],"text":["avg_tmin:  -4.8432247<br />avg_tmax:  3.63175808<br />factor(year): 2002","avg_tmin:  -6.4652447<br />avg_tmax:  5.14928884<br />factor(year): 2002","avg_tmin:  -3.8037213<br />avg_tmax:  7.03035982<br />factor(year): 2002","avg_tmin:   2.7503389<br />avg_tmax: 14.41149598<br />factor(year): 2002","avg_tmin:   5.5355982<br />avg_tmax: 17.62388684<br />factor(year): 2002","avg_tmin:  12.7382957<br />avg_tmax: 24.76317840<br />factor(year): 2002","avg_tmin:  15.6915573<br />avg_tmax: 28.16628713<br />factor(year): 2002","avg_tmin:  14.9643915<br />avg_tmax: 27.86412252<br />factor(year): 2002","avg_tmin:  11.4875126<br />avg_tmax: 24.45463735<br />factor(year): 2002","avg_tmin:   3.9686123<br />avg_tmax: 13.68720000<br />factor(year): 2002","avg_tmin:  -0.7731164<br />avg_tmax:  7.16166881<br />factor(year): 2002","avg_tmin:  -7.3139443<br />avg_tmax:  1.30027127<br />factor(year): 2002"],"type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(174,162,0,1)","opacity":0.80000000000000004,"size":7.559055118110237,"symbol":"circle","line":{"width":1.8897637795275593,"color":"rgba(174,162,0,1)"}},"hoveron":"points","name":"2002","legendgroup":"2002","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[-13.051963893632594,-11.643741515069243,-5.717682778722363,0.2425879396984911,6.9844351258016824,12.196752265861026,15.114514952589357,15.992593480345157,11.15229899188591,3.2822190270788414,0.9761440360090019,-5.7253256150506555],"y":[-3.8008793356130917,-1.4926438653637359,7.0240524781341103,11.801683417085426,18.258588351431392,23.059939531368101,26.554494655004859,26.845700598802395,22.092727272727274,14.211579956844881,10.472668167041761,3.0478281853281852],"text":["avg_tmin: -13.0519639<br />avg_tmax: -3.80087934<br />factor(year): 2003","avg_tmin: -11.6437415<br />avg_tmax: -1.49264387<br />factor(year): 2003","avg_tmin:  -5.7176828<br />avg_tmax:  7.02405248<br />factor(year): 2003","avg_tmin:   0.2425879<br />avg_tmax: 11.80168342<br />factor(year): 2003","avg_tmin:   6.9844351<br />avg_tmax: 18.25858835<br />factor(year): 2003","avg_tmin:  12.1967523<br />avg_tmax: 23.05993953<br />factor(year): 2003","avg_tmin:  15.1145150<br />avg_tmax: 26.55449466<br />factor(year): 2003","avg_tmin:  15.9925935<br />avg_tmax: 26.84570060<br />factor(year): 2003","avg_tmin:  11.1522990<br />avg_tmax: 22.09272727<br />factor(year): 2003","avg_tmin:   3.2822190<br />avg_tmax: 14.21157996<br />factor(year): 2003","avg_tmin:   0.9761440<br />avg_tmax: 10.47266817<br />factor(year): 2003","avg_tmin:  -5.7253256<br />avg_tmax:  3.04782819<br />factor(year): 2003"],"type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(100,178,0,1)","opacity":0.80000000000000004,"size":7.559055118110237,"symbol":"circle","line":{"width":1.8897637795275593,"color":"rgba(100,178,0,1)"}},"hoveron":"points","name":"2003","legendgroup":"2003","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[-13.758860453887008,-10.329354257782356,-2.6814376921258019,1.9951605058365711,9.0956847603906414,11.446864763687415,15.240798922800716,14.465853107344635,11.735756744398723,4.7904815481548129,-0.17973096215230308,-6.7272645538323204],"y":[-4.8290540540540547,1.0468589083419171,7.3422785409758404,13.137651920272241,21.60397005444646,23.431797989244796,25.416408876933421,24.80119638826185,23.049907918968692,15.054337485843714,9.6184234647112721,2.5460324616771852],"text":["avg_tmin: -13.7588605<br />avg_tmax: -4.82905405<br />factor(year): 2004","avg_tmin: -10.3293543<br />avg_tmax:  1.04685891<br />factor(year): 2004","avg_tmin:  -2.6814377<br />avg_tmax:  7.34227854<br />factor(year): 2004","avg_tmin:   1.9951605<br />avg_tmax: 13.13765192<br />factor(year): 2004","avg_tmin:   9.0956848<br />avg_tmax: 21.60397005<br />factor(year): 2004","avg_tmin:  11.4468648<br />avg_tmax: 23.43179799<br />factor(year): 2004","avg_tmin:  15.2407989<br />avg_tmax: 25.41640888<br />factor(year): 2004","avg_tmin:  14.4658531<br />avg_tmax: 24.80119639<br />factor(year): 2004","avg_tmin:  11.7357567<br />avg_tmax: 23.04990792<br />factor(year): 2004","avg_tmin:   4.7904815<br />avg_tmax: 15.05433749<br />factor(year): 2004","avg_tmin:  -0.1797310<br />avg_tmax:  9.61842346<br />factor(year): 2004","avg_tmin:  -6.7272646<br />avg_tmax:  2.54603246<br />factor(year): 2004"],"type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(0,189,92,1)","opacity":0.80000000000000004,"size":7.559055118110237,"symbol":"circle","line":{"width":1.8897637795275593,"color":"rgba(0,189,92,1)"}},"hoveron":"points","name":"2004","legendgroup":"2004","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[-10.961454046639233,-8.9027620221948141,-6.7244588261548772,1.5978905887807089,5.0459483526268931,15.012229714019995,16.546562428144398,16.177616279069767,11.757299270072998,6.268166629538876,0.20745513115508687,-7.400263331138901],"y":[-1.4063083580050126,2.257012570865172,3.8373104371097266,15.286609620721554,17.493296213808463,27.254652777777778,28.251134540453815,28.122242072353732,24.683717217787912,15.13339982269504,11.19041095890411,0.46819571865443127],"text":["avg_tmin: -10.9614540<br />avg_tmax: -1.40630836<br />factor(year): 2005","avg_tmin:  -8.9027620<br />avg_tmax:  2.25701257<br />factor(year): 2005","avg_tmin:  -6.7244588<br />avg_tmax:  3.83731044<br />factor(year): 2005","avg_tmin:   1.5978906<br />avg_tmax: 15.28660962<br />factor(year): 2005","avg_tmin:   5.0459484<br />avg_tmax: 17.49329621<br />factor(year): 2005","avg_tmin:  15.0122297<br />avg_tmax: 27.25465278<br />factor(year): 2005","avg_tmin:  16.5465624<br />avg_tmax: 28.25113454<br />factor(year): 2005","avg_tmin:  16.1776163<br />avg_tmax: 28.12224207<br />factor(year): 2005","avg_tmin:  11.7572993<br />avg_tmax: 24.68371722<br />factor(year): 2005","avg_tmin:   6.2681666<br />avg_tmax: 15.13339982<br />factor(year): 2005","avg_tmin:   0.2074551<br />avg_tmax: 11.19041096<br />factor(year): 2005","avg_tmin:  -7.4002633<br />avg_tmax:  0.46819572<br />factor(year): 2005"],"type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(0,193,167,1)","opacity":0.80000000000000004,"size":7.559055118110237,"symbol":"circle","line":{"width":1.8897637795275593,"color":"rgba(0,193,167,1)"}},"hoveron":"points","name":"2005","legendgroup":"2005","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[-4.8294658493870397,-7.8474104549854831,-4.4021529490917191,1.7144414168937294,7.6386626007405782,13.480104831358251,16.799333777481685,14.546295879306454,10.138198966988549,3.7742005185825476,2.0624972079517581,-2.0359303590859641],"y":[4.6895842450765901,1.8014524328249812,6.0056570155902058,14.972345735027224,19.849369290996083,23.938377392889699,27.908731393023771,25.990698198198199,20.361899416255049,14.197861309138041,11.083054253181515,6.5040705267740515],"text":["avg_tmin:  -4.8294658<br />avg_tmax:  4.68958425<br />factor(year): 2006","avg_tmin:  -7.8474105<br />avg_tmax:  1.80145243<br />factor(year): 2006","avg_tmin:  -4.4021529<br />avg_tmax:  6.00565702<br />factor(year): 2006","avg_tmin:   1.7144414<br />avg_tmax: 14.97234574<br />factor(year): 2006","avg_tmin:   7.6386626<br />avg_tmax: 19.84936929<br />factor(year): 2006","avg_tmin:  13.4801048<br />avg_tmax: 23.93837739<br />factor(year): 2006","avg_tmin:  16.7993338<br />avg_tmax: 27.90873139<br />factor(year): 2006","avg_tmin:  14.5462959<br />avg_tmax: 25.99069820<br />factor(year): 2006","avg_tmin:  10.1381990<br />avg_tmax: 20.36189942<br />factor(year): 2006","avg_tmin:   3.7742005<br />avg_tmax: 14.19786131<br />factor(year): 2006","avg_tmin:   2.0624972<br />avg_tmax: 11.08305425<br />factor(year): 2006","avg_tmin:  -2.0359304<br />avg_tmax:  6.50407053<br />factor(year): 2006"],"type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(0,186,222,1)","opacity":0.80000000000000004,"size":7.559055118110237,"symbol":"circle","line":{"width":1.8897637795275593,"color":"rgba(0,186,222,1)"}},"hoveron":"points","name":"2006","legendgroup":"2006","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[-7.0304347826086984,-12.414699440253115,-5.9472190947984709,0.71438181396427713,6.7201171435007874,12.560440590578859,14.140664089151699,14.485480147737764,10.741230177799137,8.0558269364968584,-1.454631379962193,-6.0124390809932722],"y":[1.937450636243967,-3.0102651423011442,5.9624774774774778,10.9792439703154,21.542776777677769,25.990402621722847,25.993839508979313,26.710333716915997,24.02193192713327,19.101644279759146,7.7488899385923498,1.5514504525411954],"text":["avg_tmin:  -7.0304348<br />avg_tmax:  1.93745064<br />factor(year): 2007","avg_tmin: -12.4146994<br />avg_tmax: -3.01026514<br />factor(year): 2007","avg_tmin:  -5.9472191<br />avg_tmax:  5.96247748<br />factor(year): 2007","avg_tmin:   0.7143818<br />avg_tmax: 10.97924397<br />factor(year): 2007","avg_tmin:   6.7201171<br />avg_tmax: 21.54277678<br />factor(year): 2007","avg_tmin:  12.5604406<br />avg_tmax: 25.99040262<br />factor(year): 2007","avg_tmin:  14.1406641<br />avg_tmax: 25.99383951<br />factor(year): 2007","avg_tmin:  14.4854801<br />avg_tmax: 26.71033372<br />factor(year): 2007","avg_tmin:  10.7412302<br />avg_tmax: 24.02193193<br />factor(year): 2007","avg_tmin:   8.0558269<br />avg_tmax: 19.10164428<br />factor(year): 2007","avg_tmin:  -1.4546314<br />avg_tmax:  7.74888994<br />factor(year): 2007","avg_tmin:  -6.0124391<br />avg_tmax:  1.55145045<br />factor(year): 2007"],"type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(0,166,255,1)","opacity":0.80000000000000004,"size":7.559055118110237,"symbol":"circle","line":{"width":1.8897637795275593,"color":"rgba(0,166,255,1)"}},"hoveron":"points","name":"2007","legendgroup":"2007","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[-7.0051192145862586,-8.5770445859872648,-5.5801970905678022,2.7748875739645049,5.0744239105635378,14.268993939393942,15.787117138180971,13.403911525029105,11.121448931116397,3.008105604446504,-0.75265996567785687,-6.5760275545350151],"y":[1.9842720261743418,1.0284114052953155,4.8592922427935319,16.590956439393942,18.221410636840904,25.761245758603973,27.247361046240076,25.08439319822968,22.797243346007608,14.72062977541097,7.6217455258641813,2.8419458467186787],"text":["avg_tmin:  -7.0051192<br />avg_tmax:  1.98427203<br />factor(year): 2008","avg_tmin:  -8.5770446<br />avg_tmax:  1.02841141<br />factor(year): 2008","avg_tmin:  -5.5801971<br />avg_tmax:  4.85929224<br />factor(year): 2008","avg_tmin:   2.7748876<br />avg_tmax: 16.59095644<br />factor(year): 2008","avg_tmin:   5.0744239<br />avg_tmax: 18.22141064<br />factor(year): 2008","avg_tmin:  14.2689939<br />avg_tmax: 25.76124576<br />factor(year): 2008","avg_tmin:  15.7871171<br />avg_tmax: 27.24736105<br />factor(year): 2008","avg_tmin:  13.4039115<br />avg_tmax: 25.08439320<br />factor(year): 2008","avg_tmin:  11.1214489<br />avg_tmax: 22.79724335<br />factor(year): 2008","avg_tmin:   3.0081056<br />avg_tmax: 14.72062978<br />factor(year): 2008","avg_tmin:  -0.7526600<br />avg_tmax:  7.62174553<br />factor(year): 2008","avg_tmin:  -6.5760276<br />avg_tmax:  2.84194585<br />factor(year): 2008"],"type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(179,133,255,1)","opacity":0.80000000000000004,"size":7.559055118110237,"symbol":"circle","line":{"width":1.8897637795275593,"color":"rgba(179,133,255,1)"}},"hoveron":"points","name":"2008","legendgroup":"2008","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[-13.18860700023491,-8.4983789260385016,-4.5087439278278936,2.063570741097208,7.1773589269195144,12.077377830750889,13.808444240477279,15.376247191011236,9.5542480583666745,4.0602179230598194,1.1899792674498946,-6.5902052655064729],"y":[-3.1952369779446257,2.332630241423121,7.1479344564966523,14.727613554434031,19.90829482439926,22.772618763428024,24.556972477064221,26.262227711655065,21.483478465521301,13.277068505338075,11.364440350069092,1.340205265506474],"text":["avg_tmin: -13.1886070<br />avg_tmax: -3.19523698<br />factor(year): 2009","avg_tmin:  -8.4983789<br />avg_tmax:  2.33263024<br />factor(year): 2009","avg_tmin:  -4.5087439<br />avg_tmax:  7.14793446<br />factor(year): 2009","avg_tmin:   2.0635707<br />avg_tmax: 14.72761355<br />factor(year): 2009","avg_tmin:   7.1773589<br />avg_tmax: 19.90829482<br />factor(year): 2009","avg_tmin:  12.0773778<br />avg_tmax: 22.77261876<br />factor(year): 2009","avg_tmin:  13.8084442<br />avg_tmax: 24.55697248<br />factor(year): 2009","avg_tmin:  15.3762472<br />avg_tmax: 26.26222771<br />factor(year): 2009","avg_tmin:   9.5542481<br />avg_tmax: 21.48347847<br />factor(year): 2009","avg_tmin:   4.0602179<br />avg_tmax: 13.27706851<br />factor(year): 2009","avg_tmin:   1.1899793<br />avg_tmax: 11.36444035<br />factor(year): 2009","avg_tmin:  -6.5902053<br />avg_tmax:  1.34020527<br />factor(year): 2009"],"type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(239,103,235,1)","opacity":0.80000000000000004,"size":7.559055118110237,"symbol":"circle","line":{"width":1.8897637795275593,"color":"rgba(239,103,235,1)"}},"hoveron":"points","name":"2009","legendgroup":"2009","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[-8.8194618834080689,-7.2702992518703287,-1.2166741775574652,3.2357426900584771,8.6535280898876437,13.638238095238098,16.569904495690658,15.384071000461045,11.310190023752968,4.8714712643678117,-0.69508470532092848,-7.4699069767441779],"y":[-0.5707333482843685,-0.090052356020941929,9.4226657645466858,17.178325929389757,22.194524236983842,24.965572990965288,28.78106976744186,26.603317972350229,22.525231646471845,15.24405417814509,9.1182685428094423,-0.40472312703583208],"text":["avg_tmin:  -8.8194619<br />avg_tmax: -0.57073335<br />factor(year): 2010","avg_tmin:  -7.2702993<br />avg_tmax: -0.09005236<br />factor(year): 2010","avg_tmin:  -1.2166742<br />avg_tmax:  9.42266576<br />factor(year): 2010","avg_tmin:   3.2357427<br />avg_tmax: 17.17832593<br />factor(year): 2010","avg_tmin:   8.6535281<br />avg_tmax: 22.19452424<br />factor(year): 2010","avg_tmin:  13.6382381<br />avg_tmax: 24.96557299<br />factor(year): 2010","avg_tmin:  16.5699045<br />avg_tmax: 28.78106977<br />factor(year): 2010","avg_tmin:  15.3840710<br />avg_tmax: 26.60331797<br />factor(year): 2010","avg_tmin:  11.3101900<br />avg_tmax: 22.52523165<br />factor(year): 2010","avg_tmin:   4.8714713<br />avg_tmax: 15.24405418<br />factor(year): 2010","avg_tmin:  -0.6950847<br />avg_tmax:  9.11826854<br />factor(year): 2010","avg_tmin:  -7.4699070<br />avg_tmax: -0.40472313<br />factor(year): 2010"],"type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(255,99,182,1)","opacity":0.80000000000000004,"size":7.559055118110237,"symbol":"circle","line":{"width":1.8897637795275593,"color":"rgba(255,99,182,1)"}},"hoveron":"points","name":"2010","legendgroup":"2010","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null}],"layout":{"margin":{"t":23.305936073059364,"r":7.3059360730593621,"b":37.260273972602747,"l":37.260273972602747},"paper_bgcolor":"rgba(255,255,255,1)","font":{"color":"rgba(0,0,0,1)","family":"","size":14.611872146118724},"xaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[-15.286770165455444,18.327243489050119],"tickmode":"array","ticktext":["-10","0","10"],"tickvals":[-10,0,10],"categoryorder":"array","categoryarray":["-10","0","10"],"nticks":null,"ticks":"","tickcolor":null,"ticklen":3.6529680365296811,"tickwidth":0,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":11.68949771689498},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(235,235,235,1)","gridwidth":0.66417600664176002,"zeroline":false,"anchor":"y","title":{"text":"Average Minimum Temperature (°C)","font":{"color":"rgba(0,0,0,1)","family":"","size":14.611872146118724}},"hoverformat":".2f"},"yaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[-6.509560245128851,30.461575958516654],"tickmode":"array","ticktext":["0","10","20","30"],"tickvals":[8.8817841970012523e-16,10.000000000000002,20,30],"categoryorder":"array","categoryarray":["0","10","20","30"],"nticks":null,"ticks":"","tickcolor":null,"ticklen":3.6529680365296811,"tickwidth":0,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":11.68949771689498},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(235,235,235,1)","gridwidth":0.66417600664176002,"zeroline":false,"anchor":"x","title":{"text":"Average Maximum Temperature (°C)","font":{"color":"rgba(0,0,0,1)","family":"","size":14.611872146118724}},"hoverformat":".2f"},"shapes":[],"showlegend":true,"legend":{"bgcolor":null,"bordercolor":null,"borderwidth":0,"font":{"color":"rgba(0,0,0,1)","family":"","size":11.68949771689498},"title":{"text":"Year","font":{"color":"rgba(0,0,0,1)","family":"","size":14.611872146118724}}},"hovermode":"closest","barmode":"relative"},"config":{"doubleClick":"reset","modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"source":"A","attrs":{"54914ede7d41":{"x":{},"y":{},"colour":{},"type":"scatter"}},"cur_data":"54914ede7d41","visdat":{"54914ede7d41":["function (y) ","x"]},"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.20000000000000001,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+</div>
+</div>
+
+</div>
+
+<script>
+$(document).ready(function() {
+  // add bootstrap table styles to pandoc tables
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed table-sm');
+
+  // initialize mathjax
+  var script = document.createElement("script");
+  script.type = "text/javascript";
+  script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+  document.getElementsByTagName("head")[0].appendChild(script);
+
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function () {
+  FlexDashboard.init({
+    fillPage: false,
+    orientation: "rows",
+    storyboard: false,
+    defaultFigWidth: 576,
+    defaultFigHeight: 460,
+    defaultFigWidthMobile: 360,
+    defaultFigHeightMobile: 460,
+    resize_reload: true
+  });
+  var navbar = $(".navbar").first();
+  var body = $("body").first();
+  var sidebar = $(".section.sidebar").first();
+  function addNavbarPadding() {
+    var navHeight = navbar.outerHeight();
+    body.css("padding-top", (navHeight + 8) + "px");
+    sidebar.css("top", navHeight + "px");
+    var resizeEvent = window.document.createEvent("UIEvents");
+    resizeEvent.initUIEvent("resize", true, false, window, 0);
+    window.dispatchEvent(resizeEvent);
+  }
+  if (!window.Shiny) setTimeout(addNavbarPadding, 100);
+  $(document).on("shiny:idle", function() {
+    setTimeout(addNavbarPadding, 50);
+  });
+});
+</script>
+
+</body>
+</html>

@@ -1,0 +1,21 @@
+name: "Chengshun Zhao"
+output_dir: "docs"
+
+navbar:
+  title: "Chengshun Zhao"
+  left:
+    - text: "Home"
+      href: index.html
+    - text: "Resume"
+      href: resume.html
+    - text: "Dashboard"
+      href: dashboard.html
+  right:
+    - text: "GitHub"
+      href: https://github.com/DavidZhao719
+    - text: "Email"
+      href: mailto:cz3006@cumc.columbia.edu
+
+output:
+  html_document:
+    theme: flatly

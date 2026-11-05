@@ -1,0 +1,77 @@
+---
+title: "Chengshun Zhao — Resume"
+author: "Chengshun Zhao"
+date: "2026-11-04"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Education
+
+**Columbia University — Mailman School of Public Health**  
+Master of Science in Biostatistics | September 2026 – May 2028 (Expected)
+
+- Focus: Biostatistics, statistical modeling, data science, and public health data analysis.
+
+**The Pennsylvania State University — University Park**  
+Bachelor of Science in Data Sciences | August 2022 – May 2026
+
+- Relevant coursework: Data Visualization, Statistical Data Science, Algorithms, Big Data Programming, Data Management, and Data Privacy.
+- TOEFL: 108
+
+# Technical Skills
+
+- **Programming:** Python (pandas, NumPy, statsmodels), R, SQL
+- **Visualization:** Tableau, Power BI, Plotly Dash
+- **Statistical Methods:** Multiple Regression, A/B Testing, K-Means, DBSCAN, PCA
+- **Machine Learning:** XGBoost, Classification, Predictive Modeling
+
+# Professional Experience
+
+## Ipsos (China) — Social Insights and Data Analytics Intern
+
+*Shanghai, China | June 2025 – August 2025*
+
+- Supported consumer research projects through survey data cleaning, organization, statistical analysis, and quality control.
+- Independently developed more than 15 data processing specifications, standardizing variable definitions, coding rules, and data transformation procedures.
+- Prepared more than 10 topline analysis reports using Excel and PowerPoint to support consumer insights, brand positioning, and client presentations.
+- Participated in 5 expert interviews and 12 consumer home visits, and conducted over 50 data quality checks.
+
+## Cue Group — Data Analytics Intern
+
+*Shanghai, China | May 2024 – July 2024*
+
+- Used Python and SQL to analyze over 100,000 records related to store monitoring and customer behavior.
+- Applied DBSCAN and K-Means to customer segmentation and anomaly detection.
+- Developed customer journey and conversion funnel analyses to support retail operations.
+- Combined sales and customer traffic data to support business dashboards and standardized reporting.
+- Contributed to pilot initiatives associated with a 15% reduction in store inspection labor costs and an 8% increase in customer conversion rates.
+
+# Selected Projects
+
+## Education and Income Analysis
+
+*January 2025 – March 2025*
+
+- Analyzed 32,561 observations from the Adult Income dataset to investigate relationships between education, occupation, gender, and income.
+- Used Python and multiple regression to examine differences in estimated returns to education across occupational groups.
+- Developed interactive dashboards using Tableau and Plotly Dash.
+- Received a Best Innovation Award for the project.
+
+## Heart Disease Prediction Using XGBoost
+
+*October 2024 – December 2024*
+
+- Developed a machine learning model for heart disease risk prediction using healthcare data.
+- Performed data cleaning, outlier detection with DBSCAN, one-hot encoding, and dimensionality reduction using PCA.
+- Trained and optimized an XGBoost classifier using hyperparameter tuning and early stopping.
+- Achieved 86.7% test accuracy and a Cohen's Kappa score of 0.729.
+
+# Contact
+
+**Email:** [cz3006@cumc.columbia.edu](mailto:cz3006@cumc.columbia.edu)
+
+**GitHub:** [DavidZhao719](https://github.com/DavidZhao719)

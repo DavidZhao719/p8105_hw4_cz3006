@@ -1,0 +1,127 @@
+---
+title: "NY NOAA Interactive Dashboard"
+author: "Chengshun Zhao"
+output:
+  flexdashboard::flex_dashboard:
+    orientation: rows
+    vertical_layout: scroll
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, message = FALSE, warning = FALSE)
+```
+
+```{r load-noaa}
+library(tidyverse)
+library(p8105.datasets)
+library(plotly)
+
+data("ny_noaa")
+
+```
+
+```{r clean-noaa}
+noaa_clean = ny_noaa |>
+  mutate(
+    year = lubridate::year(date),
+    month = lubridate::month(date),
+    tmax = as.numeric(tmax) / 10,
+    tmin = as.numeric(tmin) / 10
+  ) |>
+  filter(
+    year >= 2000,
+    year <= 2010
+  )
+
+
+```
+```{r monthly-summary}
+weather_monthly = noaa_clean |>
+  group_by(year, month) |>
+  summarize(
+    avg_tmax = mean(tmax, na.rm = TRUE),
+    avg_tmin = mean(tmin, na.rm = TRUE),
+    .groups = "drop"
+  ) |>
+  filter(
+    !is.na(avg_tmax),
+    !is.na(avg_tmin),
+    is.finite(avg_tmax),
+    is.finite(avg_tmin)
+  ) |>
+  mutate(
+    month_date = as.Date(
+      sprintf("%04d-%02d-01", year, month)
+    )
+  )
+
+
+```
+##
+
+### Monthly Average Maximum Temperature
+
+```{r line-plot}
+line_plot = weather_monthly |>
+  ggplot(aes(x = month_date, y = avg_tmax)) +
+  geom_line(color = "steelblue", linewidth = 0.8) +
+  labs(
+    x = "Date",
+    y = "Average Maximum Temperature (°C)"
+  ) +
+  theme_minimal()
+
+ggplotly(line_plot)
+```
+##
+
+### Average Maximum Temperature by Month
+
+```{r bar-plot}
+monthly_summary = weather_monthly |>
+  group_by(month) |>
+  summarize(
+    avg_temperature = mean(avg_tmax, na.rm = TRUE),
+    .groups = "drop"
+  ) |>
+  mutate(
+    month_name = factor(
+      month.abb[month],
+      levels = month.abb
+    )
+  )
+
+bar_plot = monthly_summary |>
+  ggplot(aes(x = month_name, y = avg_temperature)) +
+  geom_col(fill = "steelblue") +
+  labs(
+    x = "Month",
+    y = "Average Maximum Temperature (°C)"
+  ) +
+  theme_minimal()
+
+ggplotly(bar_plot)
+```
+##
+
+### Maximum vs Minimum Temperature
+
+```{r scatter-plot}
+scatter_plot = weather_monthly |>
+  ggplot(
+    aes(
+      x = avg_tmin,
+      y = avg_tmax,
+      color = factor(year)
+    )
+  ) +
+  geom_point(size = 2, alpha = 0.8) +
+  labs(
+    x = "Average Minimum Temperature (°C)",
+    y = "Average Maximum Temperature (°C)",
+    color = "Year"
+  ) +
+  theme_minimal()
+
+ggplotly(scatter_plot)
+```
